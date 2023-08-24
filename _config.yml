@@ -154,7 +154,7 @@ defaults:
       layout: page
       permalink: /:title/
   - scope:
-      path: assets/img/favicons
+      path: "https://avatars.githubusercontent.com/u/79975278?s=400&u=f138cb908e12521218253da0b18d5e95a4197919&v=4"
     values:
       swcache: true
   - scope:
