@@ -17,6 +17,6 @@ collections:
       - {label: "Publicsh Date", name: "date", }
       - {label: "Tag", name: "tags", widget: "string"}
       - {label: "Category", name: "categories", widget: "string"}
-      - {label: "Thumbnail(Optional)", name: "img_path", widget: "image", required: "false"}
+      - {label: "Thumbnail(Optional)", name: "img_path", widget: "image", required: false}
       - {label: "pin", name: "pin", widget: "boolean"}
       - {label: "Content", name: "body", widget: "markdown"}
