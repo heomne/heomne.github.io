@@ -9,7 +9,7 @@ collections:
     label: "Blog Posting"
     folder: "_posts"
     create: true
-    slug: "{{yearr}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Author(heomne)", name: author, widget: "string", default: "heomne"}
