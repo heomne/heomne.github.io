@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: master # Branch to update (optional; defaults to master)
 
-media_folder: "_site/assets/post_img"
-public_folder: "assets/post_img"
+media_folder: "assets/post_img"
+public_folder: "_site/assets/post_img"
 site_url: https://heomne.github.io
 display_url: https://heomne.github.io
 logo_url: https://avatars.githubusercontent.com/u/79975278?s=400&u=f138cb908e12521218253da0b18d5e95a4197919&v=4
