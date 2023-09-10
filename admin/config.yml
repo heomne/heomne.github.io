@@ -22,7 +22,7 @@ collections:
           widget: "string",
           default: "heomne"
         }
-      - { label: "Publicsh Date", name: "date", widget: "date", default: "", format: "YYYY-MM-DD" }
+      - { label: "Publicsh Date", name: "date", widget: "date" }
       - { label: "Tag", name: "tags", widget: "list" }
       - { label: "Category", name: "categories", widget: "string" }
       - {
