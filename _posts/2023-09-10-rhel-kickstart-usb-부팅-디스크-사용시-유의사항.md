@@ -37,7 +37,7 @@ cdrom
 
 ISO 파일로 설치되기때문에 cdrom이라고 적혀있습니다. USB stick으로 만들어 설치할 때는 아래와 같이 작성해주어야합니다.
 
-```vim
+```shell
 ...
 # Use CDROM installation media
 # cdrom
@@ -53,7 +53,7 @@ cdrom으로 설치하는 킥스타트 파일에는 `%post`스크립트에 부팅
 
 따라서 `repo`구문을 사용하여 설치단계에서 레포지토리를 잡도록 설정해주어야했습니다. `repo`구문을 사용하여 필요한 레포지토리의 파일 경로를 잡아주었습니다.
 
-```vim
+```shell
 ...
 # enable repository
 url --url file:///mnt/install/repo/BaseOS
@@ -65,7 +65,7 @@ USB stick으로 RHEL을 설치하는 경우, 부팅디스크는 `/mnt/install/re
 
 `%Package`섹션에서 설치할 패키지들을 입력하여 설치할 수 있도록해줍니다.
 
-```vim
+```shell
 ...
 %packages
 @^graphical-server-environment
@@ -83,7 +83,7 @@ createrepo_c
 아마 가장 중요한 항목이 아닐까 싶습니다. cdrom으로 Kickstart를 설치할 때, 부팅디스크 내에 존재하는 파일을 사용하기위해선 단순히 마운트 시킨다음 사용하면 간단하게 사용이 가능했습니다.
 하지만 USB에서는 마운트가 되지 않기때문에 부팅디스크에 있는 파일을 옮기는 방법이 상대적으로 복잡합니다. `%post`스크립트를 사용하여 파일을 옮길 수 있습니다. 일단 아래 예시구문을 봅시다.
 
-```vim
+```shell
 ## 부팅 디스크에 있는 쉘 파일을 설치될 OS의 /tmp 디렉토리로 복사
 %post --nochroot
 cp -r /mnt/install/repo/hello.sh /mnt/sysroot/tmp
