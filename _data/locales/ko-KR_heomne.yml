@@ -59,7 +59,7 @@ post:
   pageview_measure: 조회
   read_time:
     unit: mins
-    prompt: to read
+    prompt:  to read
   relate_posts: 관련된 글
   share: 공유하기
   button:
