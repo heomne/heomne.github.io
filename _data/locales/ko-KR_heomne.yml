@@ -53,15 +53,15 @@ notification:
 
 post:
   written_by: By
-  posted: 게시
-  updated: 업데이트
+  posted: posted
+  updated: updated
   words: 단어
   pageview_measure: 조회
   read_time:
     unit: mins
     prompt: " to read"
-  relate_posts: 관련된 글
-  share: 공유하기
+  relate_posts: 관련 글
+  share: 공유
   button:
     next: 다음 글
     previous: 이전 글

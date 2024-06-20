@@ -391,6 +391,8 @@ i {
 
 .post-meta {
   font-size: 0.85rem;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed gray;
 
   a {
     &:not([class]):hover {
