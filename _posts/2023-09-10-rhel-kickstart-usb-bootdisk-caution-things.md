@@ -2,7 +2,7 @@
 title: "[RHEL] Kickstart USB 부팅 디스크 사용시 유의사항"
 author: heomne
 tags:
-  - Linux
+  - linux
   - RHEL
   - troubleshooting
 categories: TroubleShooting
