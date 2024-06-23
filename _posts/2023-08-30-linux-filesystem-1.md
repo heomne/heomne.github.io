@@ -26,7 +26,7 @@ pin: false
 
 하지만 어떠한 파일시스템이라도 같은 시스템 콜을 호출하여 통일된 인터페이스 접근이 가능합니다.
 
-![](/_site/assets/post_img/screenshot-2023-08-30-142943.png)
+![](/assets/post_img/screenshot-2023-08-30-142943.png)
 
 # 데이터와 메타데이터
 
