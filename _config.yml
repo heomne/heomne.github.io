@@ -38,7 +38,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: hmm_in_e
-  email: hmin4957@naver.com # change to your email address
+  email: hmin4957@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/username # change to your twitter homepage
@@ -94,10 +94,10 @@ comments:
   giscus:
     repo: heomne/heomne.github.io # <gh-username>/<repo>
     repo_id: R_kgDOKKY1uw
-    category: Show and tell
-    category_id: DIC_kwDOKKY1u84CYzBc
+    category: General
+    category_id: DIC_kwDOKKY1u84CYzBZ
     mapping: pathname # optional, default to 'pathname'
-    input_position: bottom # optional, default to 'bottom'
+    input_position: top # optional, default to 'bottom'
     lang: ko # optional, default to the value of `site.lang`
     reactions_enabled: 1 # optional, default to the value of `1`
 
