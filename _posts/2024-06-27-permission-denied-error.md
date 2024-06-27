@@ -1,5 +1,5 @@
 ---
-title: "(SOLVED) hostnamectl, timedatectl 명령어 작동하지 않는 현상"
+title: "hostnamectl, timedatectl 명령어 작동하지 않는 현상"
 author: heomne
 date: 2024-06-27
 tags: linux troubleshoot
@@ -8,7 +8,7 @@ pin: false
 ---
 ## ISSUE
 `hostnamectl` `timedatectl` 명령어를 입력하면 아래와 같은 메시지가 나오면서 명령어 실행에 실패합니다.
-```
+```bash
 root@hello /root # hostnamectl
 Failed to query system properties: The name org.freedesktop.hostname1 was not provided by any .service files
 root@hello /root # timedatectl
@@ -17,7 +17,7 @@ Failed to query server: The name org.freedesktop.timedate1 was not provided by a
 
 해당 에러와 관련된 데몬을 찾던 중, `dbus-daemon`에서 아래와 같은 에러 메시지가 나오고 있습니다.
 
-```
+```bash
 root@hello /root # systemctl status dbus
 ● dbus.service - D-Bus System Message Bus
    Loaded: loaded (/usr/lib/systemd/system/dbus.service; static; vendor preset: disabled)
