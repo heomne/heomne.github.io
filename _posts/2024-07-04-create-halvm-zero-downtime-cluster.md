@@ -14,7 +14,7 @@ pin: false
 - Pacemaker 클러스터 구성
   - two-node 구성
   - 스토리지 리소스(LVM, Filesystem)가 아래와 같이 이미 구성된 상태로 가정
-    ```bash
+    ```terminal
     Cluster name: rhelha
     Stack: corosync
     Current DC: hostha02-hb (version 1.1.23-1.el7-9acf116022) - partition with quorum
@@ -48,7 +48,7 @@ pin: false
       pcsd: active/enabled
     ```
   - `/etc/lvm/lvm.conf` 파일에 `use_lvmetad = 0`, `volume_list = [ "rhel" ]` 설정된 상태
-    ```bash
+    ```terminal
     [root@hostha01 ~]# cat /etc/lvm/lvm.conf | egrep 'use_lvmetad = 0|volume_list = \[ "rhel" \]'
             use_lvmetad = 0
             volume_list = [ "rhel" ]  # rhel = boot-volume
@@ -61,7 +61,7 @@ pin: false
   - `vgcreate havg3 /dev/sdk`
 3. `vgs -o+tags` 명령어를 입력하여 양쪽 노드에 볼륨 그룹이 생성되었는지, 용량이 같은지 확인합니다.
   볼륨 그룹 `havg3`은 생성되었지만 페이스메이커에 의해 활성화되지는 않았기 때문에 `pacemaker` 태그가 추가되어있지 않습니다.
-```bash
+```terminal
 [root@hostha01 ~]# vgs -o+tags
   VG    #PV #LV #SN Attr   VSize   VFree VG Tags
   havg    5   1   0 wz--n-  29.96g    0  pacemaker
@@ -70,7 +70,7 @@ pin: false
   rhel    1   3   0 wz--n- <99.00g 4.00m
 ```
 4. 1호기에서 `lvcreate` 명령어로 LVM을 생성하려고하면 아래와 같은 텍스트가 출력되며 LV가 생성되지 않습니다.
-```bash
+```terminal
 [root@hostha01 ~]# lvcreate -n halv3 -l +100%FREE havg3
   Volume "havg3/halv3" is not active locally (volume_list activation filter?).
   Aborting. Failed to wipe start of new LV.
@@ -79,7 +79,7 @@ pin: false
 5. 1호기에서 아래 명령어를 입력하여 `havg3` 볼륨 그룹에 'pacemaker' 태그 추가 후, 볼륨 그룹을 활성화합니다.
   - `vgchange --addtag pacemaker havg3`
   - `vgchange -ay havg3 --config 'activation { volume_list = [ "@pacemaker" ]}'`
-```bash
+```terminal
 [root@hostha01 ~]# vgchange --addtag pacemaker havg3
   Volume group "havg3" successfully changed
 [root@hostha01 ~]# vgchange -ay havg3 --config 'activation { volume_list = [ "@pacemaker" ]}'
@@ -88,7 +88,7 @@ pin: false
 6. 1호기에서 아래 명령어를 입력하여 LV를 다시 생성합니다.
   - `lvcreate -n halv3 -l +100%FREE havg3 --config 'activation { volume_list = [ "@pacemaker" ]}'`
   - `mkfs.xfs /dev/havg3/halv3`
-```bash
+```terminal
 [root@hostha01 ~]# lvcreate -n halv3 -l +100%FREE havg3 --config 'activation { volume_list = [ "@pacemaker" ]}'
   Logical volume "halv3" created.
 [root@hostha01 ~]# lvs
@@ -103,7 +103,7 @@ pin: false
 7. LV 생성을 위해 일시적으로 `havg3` 볼륨 그룹을 활성화했으므로, 1호기에서 다시 비활성화 시켜줍니다.
   - `vgchange -an havg3`
   - `vgchange --deltag pacemaker havg3`
-```bash
+```terminal
 [root@hostha01 ~]# vgchange -an havg3
   0 logical volume(s) in volume group "havg3" now active
 [root@hostha01 ~]# vgchange --deltag pacemaker havg3
@@ -123,7 +123,7 @@ pin: false
   - `pcs resource create halv3 Filesystem device=/dev/havg3/halv3 directory=/mount/halv3 fstype=xfs run_fsck=no --rhelha3` (1호기)
 
   서비스가 정상적으로 실행되어있는지 확인합니다.
-```bash
+```terminal
 Cluster name: rhelha
 Stack: corosync
 Current DC: hostha02-hb (version 1.1.23-1.el7-9acf116022) - partition with quorum
