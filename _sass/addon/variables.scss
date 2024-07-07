@@ -29,6 +29,13 @@ $code-icon-width: 1.75rem !default;
 
 /* fonts */
 
+@font-face {
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
 $font-family-base: 'Freesentation-9Black', 'Source Sans Pro', 'Microsoft Yahei', sans-serif !default;
 $font-family-heading: 'Freesentation-9Black', Lato, 'Microsoft Yahei', sans-serif !default;
 
