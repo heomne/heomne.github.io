@@ -8,13 +8,13 @@ categories: Etc
 ---
 이전에 [VirtualBox에서 USB 부팅 디스크 테스트 방법](https://heomne.github.io/posts/bootdisk-test-with-virtualbox/)에 대한 글을 작성한 적이 있습니다. 유용하게 사용하고 있었는데,, 다른 고객사에서 BIOS(Legacy) 부팅 환경에서 킥스타트 USB 부팅 디스크를 요청하게되어 새로운 글을 작성하게 되었습니다.
 
-# VirtualBox 쓰다 VMWare를 굳이 사용한 이유
+## VirtualBox 쓰다 VMWare를 굳이 사용한 이유
 
 VirtualBox에서는 UEFI 환경에서만 USB 부팅 디스크를 지원하는 듯 합니다. Legacy 환경으로도 부팅할 수 있는 방법이 있긴 하지만 너무 복잡하고 비효율적이어서 VMware Workstation으로 해봤는데, 기본 부팅 방식이 BIOS 부팅으로되어있어 고객사에서 요청한 환경과 동일한 점, USB 부팅을 간단하게 사용하여 테스트 해볼 수 있다는 점이 장점이었는데요.
 
 다만 처음 사용하는 경우에는 어느정도 진입장벽이 존재하여 여러 번 삽질한 끝에 성공했습니다. **VMWare Workstation 17** 버전에서 테스트했으며, 최신버전이다 보니 최신 하드웨어가 기본으로 설정되어있어 변경해야할 부분이 많았습니다.
 
-# VMWare Workstation VM 구성방법
+## VMWare Workstation VM 구성방법
 
 일단 이 글에서는 USB 부팅 디스크가 정상적으로 되는지를 중점적으로 다루기 때문에 네트워크 구성은 하지 않습니다. OS를 설치할 Local 볼륨, 그리고 컴퓨터에 연결된 USB를 VM과 연동하고, 최소한의 CPU와 메모리만을 구성한 VM을 생성합니다.
 
