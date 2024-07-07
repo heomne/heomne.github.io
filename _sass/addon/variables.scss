@@ -15,7 +15,7 @@ $topbar-height: 3rem !default;
 $search-max-width: 200px !default;
 $footer-height: 5rem !default;
 $footer-height-large: 6rem !default; /* screen width: < 850px */
-$main-content-max-width: 1600px !default; /* content max width */
+$main-content-max-width: 1570px !default; /* content max width */
 $base-radius: 0.625rem !default;
 $back2top-size: 2.75rem !default;
 
@@ -29,13 +29,15 @@ $code-icon-width: 1.75rem !default;
 
 /* fonts */
 
-@font-face {
-    font-family: 'Freesentation-9Black';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
-$font-family-base: 'Freesentation-9Black', 'Source Sans Pro', 'Microsoft Yahei', sans-serif !default;
-$font-family-heading: 'Freesentation-9Black', Lato, 'Microsoft Yahei', sans-serif !default;
+.noto-sans-kr {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+$font-family-base: 'Noto Sans KR', 'Source Sans Pro', 'Microsoft Yahei', sans-serif !default;
+$font-family-heading: 'Noto Sans KR', Lato, 'Microsoft Yahei', sans-serif !default;
 
