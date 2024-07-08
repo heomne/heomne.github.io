@@ -118,10 +118,10 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: heomne/heomne.github.io # <gh-username>/<repo>
-    repo_id: R_kgDOMS-7vg
-    category: Show and tell
-    category_id: DIC_kwDOMS-7vs4CgnzI
-    mapping: url # optional, default to 'pathname'
+    repo_id: R_kgDOMTUz6g
+    category: Announcements
+    category_id: DIC_kwDOMTUz6s4Cgo3Z
+    mapping: title # optional, default to 'pathname'
     strict: 0 # optional, default to '0'
     input_position: top # optional, default to 'bottom'
     lang: ko # optional, default to the value of `site.lang`
