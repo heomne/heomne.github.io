@@ -70,6 +70,7 @@ WSL 설치 후 Ruby 최신버전을 설치하는 방법이 약간 다릅니다. 
   asdf: Warn: You have configured asdf to preserve downloaded files (with always_keep_download=yes or --keep-download). But
   asdf: Warn: the current plugin (ruby) does not support that. Downloaded files will not be preserved.
   ```
+  
   설치 후 global 설정을 해줍니다.
   - `asdf global ruby 3.3.3`
 
