@@ -7,7 +7,7 @@ categories: Linux
 pin: false
 ---
 
-**참고: RHEL8 버전부터는 `lvm2-lvmetad`데몬이 존재하지 않으므로, 해당 옵션을 사용할 필요가 없습니다.**
+| **참고: RHEL8 버전부터는 `lvm2-lvmetad`데몬이 존재하지 않으므로, 해당 옵션을 사용할 필요가 없습니다.** {: .prompt-tip }
 
 lvm2-lvmetad 비활성화를 위해서는 `/etc/lvm/lvm.conf` 파일을 변경 후, 데몬 중지 및 비활성화 작업을 진행해주어야합니다.
 
