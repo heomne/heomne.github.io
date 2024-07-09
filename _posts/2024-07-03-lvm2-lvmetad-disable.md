@@ -12,17 +12,21 @@ pin: false
 
 lvm2-lvmetad 비활성화를 위해서는 `/etc/lvm/lvm.conf` 파일을 변경 후, 데몬 중지 및 비활성화 작업을 진행해주어야합니다.
 
-`/etc/lvm/lvm.conf` 파일에서 'use_lvmetad =' 검색 후 0을 1로 변경합니다.
+`/etc/lvm/lvm.conf` 파일에서 'use_lvmetad =' 검색 후 1을 0으로 변경합니다.
 ```bash
         # See the use_lvmetad comment for a special case regarding filters.
         #     This is incompatible with lvmetad. If use_lvmetad is enabled,
         # Configuration option global/use_lvmetad.
         # while use_lvmetad was disabled, it must be stopped, use_lvmetad
-        use_lvmetad = 1
+        use_lvmetad = 0
 ```
 
-파일 저장 후 `systemctl stop lvm2-lvmetad` `systemctl disable lvm2-lvmetad`를 입력합니다.
-명령어 입력 후 `systemctl is-enabled lvm2-lvmetad`를 입력해 `static`으로 출력되는지 확인합니다.
+파일 저장 후 lvm2-lvmetad 데몬을 중지합니다.
+```
+systemctl stop lvm2-lvmetad
+systemctl disable lvm2-lvmetad
+```
+데몬이 비활성화 되었는지 확인합니다.
 ```terminal
 [root@localhost ~]# systemctl is-enabled lvm2-lvmetad
 static

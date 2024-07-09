@@ -120,7 +120,7 @@ pin: false
 페이스메이커 리소스 생성은 기존에 생성했던 명령어 입력과 같습니다. 마운트포인트 지점 생성 후 리소스를 생성합니다.
   - `mkdir /mount/halv3` (모든 노드)
   - `pcs resource create havg3 LVM volgrpname=havg3 exclusive=true --group rhelha3` (1호기)
-  - `pcs resource create halv3 Filesystem device=/dev/havg3/halv3 directory=/mount/halv3 fstype=xfs run_fsck=no --rhelha3` (1호기)
+  - `pcs resource create halv3 Filesystem device=/dev/havg3/halv3 directory=/mount/halv3 fstype=xfs run_fsck=no --group rhelha3` (1호기)
 
   서비스가 정상적으로 실행되어있는지 확인합니다.
 ```terminal
