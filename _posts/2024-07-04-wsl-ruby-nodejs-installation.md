@@ -30,46 +30,46 @@ WSL 설치 후 Ruby 최신버전을 설치하는 방법이 약간 다릅니다. 
 ## Ruby & NodeJS 설치
 [GO RAILS](https://gorails.com/setup/ubuntu/22.04) 공식 문서에 설치 가이드가 자세히 작성되어있어 문서를 참고하여 Ruby를 설치합니다.
 ### Dependency Package 설치
-  아래 명령어를 입력하여 패키지 업데이트 & 의존성 패키지를 설치합니다.
-  ```terminal
-  sudo apt-get update
-  sudo apt-get install git-core zlib1g-dev build-essential libssl-dev \
-  libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev \
-  libcurl4-openssl-dev software-properties-common libffi-dev
-  ```
+아래 명령어를 입력하여 패키지 업데이트 & 의존성 패키지를 설치합니다.
+```terminal
+sudo apt-get update
+sudo apt-get install git-core zlib1g-dev build-essential libssl-dev \
+libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev \
+libcurl4-openssl-dev software-properties-common libffi-dev
+```
 ### [ASDF](https://asdf-vm.com/) 버전 매니저 설치
-  아래 명령어를 입력하여 ASDF 버전 매니저를 설치합니다.
-  ```terminal
-  cd
-  git clone https://github.com/excid3/asdf.git ~/.asdf
-  echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-  echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
-  echo 'legacy_version_file = yes' >> ~/.asdfrc
-  echo 'export EDITOR="code --wait"' >> ~/.bashrc
-  exec $SHELL
-  ```
-  
-  설치 후 ruby, nodejs를 asdf 플러그인에 추가합니다.
-  - `asdf plugin add ruby`
-  - `asdf plugin add nodejs`
+아래 명령어를 입력하여 ASDF 버전 매니저를 설치합니다.
+```terminal
+cd
+git clone https://github.com/excid3/asdf.git ~/.asdf
+echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
+echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
+echo 'legacy_version_file = yes' >> ~/.asdfrc
+echo 'export EDITOR="code --wait"' >> ~/.bashrc
+exec $SHELL
+```
+
+설치 후 ruby, nodejs를 asdf 플러그인에 추가합니다.
+- `asdf plugin add ruby`
+- `asdf plugin add nodejs`
 
 ### Ruby 설치
   ASDF를 사용하여 Ruby 3.3.3 버전을 설치합니다.
   - `asdf install ruby 3.3.3`
-  ```terminal
-  ==> Downloading ruby-3.3.3.tar.gz...
-  -> curl -q -fL -o ruby-3.3.3.tar.gz https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.3.tar.gz
-    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                  Dload  Upload   Total   Spent    Left  Speed
-  100 21.0M  100 21.0M    0     0  9738k      0  0:00:02  0:00:02 --:--:-- 9741k
-  ==> Installing ruby-3.3.3...
-  -> ./configure "--prefix=$HOME/.asdf/installs/ruby/3.3.3" --enable-shared --with-ext=openssl,psych,+
-  -> make -j 8
-  -> make install
-  ==> Installed ruby-3.3.3 to /home/user/.asdf/installs/ruby/3.3.3
-  asdf: Warn: You have configured asdf to preserve downloaded files (with always_keep_download=yes or --keep-download). But
-  asdf: Warn: the current plugin (ruby) does not support that. Downloaded files will not be preserved.
-  ```
+    ```terminal
+    ==> Downloading ruby-3.3.3.tar.gz...
+    -> curl -q -fL -o ruby-3.3.3.tar.gz https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.3.tar.gz
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100 21.0M  100 21.0M    0     0  9738k      0  0:00:02  0:00:02 --:--:-- 9741k
+    ==> Installing ruby-3.3.3...
+    -> ./configure "--prefix=$HOME/.asdf/installs/ruby/3.3.3" --enable-shared --with-ext=openssl,psych,+
+    -> make -j 8
+    -> make install
+    ==> Installed ruby-3.3.3 to /home/user/.asdf/installs/ruby/3.3.3
+    asdf: Warn: You have configured asdf to preserve downloaded files (with always_keep_download=yes or --keep-download). But
+    asdf: Warn: the current plugin (ruby) does not support that. Downloaded files will not be preserved.
+    ```
   
   설치 후 global 설정을 해줍니다.
   - `asdf global ruby 3.3.3`
