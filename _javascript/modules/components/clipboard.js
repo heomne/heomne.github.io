@@ -37,7 +37,7 @@ function unlock(node) {
 }
 
 function showTooltip(btn) {
-  const succeedTitle = btn.getAttribute(ATTR_TITLE_SUCCEED);
+  const succeedTitle = btn.getAttribute(ATTR_TITLE_SUCCEED); 
   btn.setAttribute(ATTR_TITLE_ORIGIN, succeedTitle);
   Tooltip.getInstance(btn).show();
 }
@@ -67,7 +67,7 @@ function setCodeClipboard() {
   // Initial the clipboard.js object
   const clipboard = new ClipboardJS(clipboardSelector, {
     target: (trigger) => {
-      const codeBlock = trigger.nextElementSibling;
+      const codeBlock = trigger.parentElement;
       return codeBlock.querySelector('code .rouge-code');
     }
   });
