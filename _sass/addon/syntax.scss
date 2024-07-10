@@ -159,6 +159,48 @@ div[class^='language-'] {
   .highlight {
     // border-top-left-radius: 0;     // disable cause code-header disappeared
     // border-top-right-radius: 0;
+    position: relative;
+
+    /* clipboard */
+    button {
+      @extend %cursor-pointer;
+      @extend %rounded;
+      
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      border: 1px solid transparent;
+      height: $code-header-height;
+      width: $code-header-height;
+      padding: 0;
+      background-color: inherit;
+
+      i {
+        color: var(--code-header-icon-color);
+      }
+
+      &[timeout] {
+        &:hover {
+          border-color: var(--clipboard-checked-color);
+        }
+
+        i {
+          color: var(--clipboard-checked-color);
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:not([timeout]):hover {
+        background-color: rgba(128, 128, 128, 0.37);
+
+        i {
+          color: white;
+        }
+      }
+    }
   }
 }
 
@@ -176,7 +218,7 @@ div {
         display: none;
       }
     }
-  }
+  }  
 }
 
 .code-header {
@@ -215,44 +257,6 @@ div {
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--code-header-text-color);
-    }
-  }
-
-  /* clipboard */
-  button {
-    @extend %cursor-pointer;
-    @extend %rounded;
-
-    border: 1px solid transparent;
-    height: $code-header-height;
-    width: $code-header-height;
-    padding: 0;
-    background-color: inherit;
-
-    i {
-      color: var(--code-header-icon-color);
-    }
-
-    &[timeout] {
-      &:hover {
-        border-color: var(--clipboard-checked-color);
-      }
-
-      i {
-        color: var(--clipboard-checked-color);
-      }
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:not([timeout]):hover {
-      background-color: rgba(128, 128, 128, 0.37);
-
-      i {
-        color: white;
-      }
     }
   }
 }

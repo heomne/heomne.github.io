@@ -200,7 +200,11 @@
 
       {% assign _new_content = _new_content
         | append: _snippet
-        | append: '<div class="highlight"><code>'
+        | append: '<div class="highlight">'
+        | append: '<button aria-label="copy" data-title-succeed="'
+        | append: site.data.locales[include.lang].post.button.copy_code.succeed
+        | append: '"><i class="far fa-clipboard"></i></button>'
+        | append: '<code>'
       %}
     {% endif %}
   {% endfor %}
@@ -237,7 +241,12 @@
       {% assign right = snippet | slice: left.size, snippet.size %}
       {% assign left = left | replace_first: '">', '"><span class="me-2">' | append: '</span>' %}
 
-      {% assign _new_content = _new_content | append: mark_start | append: left | append: anchor | append: right %}
+      {% assign _new_content = _new_content 
+        | append: mark_start 
+        | append: left  
+        | append: anchor 
+        | append: right 
+      %}
     {% endfor %}
 
     {% assign _heading_content = _new_content %}

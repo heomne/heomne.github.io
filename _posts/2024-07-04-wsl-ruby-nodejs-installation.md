@@ -10,7 +10,7 @@ WSL 설치 후 Ruby 최신버전을 설치하는 방법이 약간 다릅니다. 
 
 ## 설치환경
 - Windows 11
-- WSL: Ubuntu(22.04.3 LTS (Jammy Jellyfish)
+- WSL: Ubuntu(22.04.3 LTS - Jammy Jellyfish)
   ```terminal
   PRETTY_NAME="Ubuntu 22.04.3 LTS"
   NAME="Ubuntu"

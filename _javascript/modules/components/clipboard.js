@@ -7,7 +7,7 @@
 
 import Tooltip from 'bootstrap/js/src/tooltip';
 
-const clipboardSelector = '.code-header>button';
+const clipboardSelector = '.highlight>button';
 
 const ICON_DEFAULT = 'far fa-clipboard';
 const ICON_SUCCESS = 'fas fa-check';
@@ -67,11 +67,11 @@ function setCodeClipboard() {
   // Initial the clipboard.js object
   const clipboard = new ClipboardJS(clipboardSelector, {
     target: (trigger) => {
-      const codeBlock = trigger.parentNode.nextElementSibling;
+      const codeBlock = trigger.nextElementSibling;
       return codeBlock.querySelector('code .rouge-code');
     }
   });
-
+  
   [...clipboardList].map(
     (elem) =>
       new Tooltip(elem, {
