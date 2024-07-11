@@ -2,7 +2,7 @@
 title: "(RHEL) lvm2-lvmetad 비활성화"
 author: heomne
 date: 2024-07-03
-tags: linux troubleshoot
+tags: linux troubleshooting
 categories: Linux
 pin: false
 ---

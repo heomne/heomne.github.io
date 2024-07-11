@@ -2,7 +2,7 @@
 title: "hostnamectl, timedatectl 명령어 작동하지 않는 현상"
 author: heomne
 date: 2024-06-27
-tags: linux troubleshoot
+tags: linux troubleshooting
 categories: Linux
 pin: false
 ---

@@ -2,7 +2,7 @@
 title: "[Linux] 파일시스템 - 1"
 author: heomne
 date: 2023-08-30
-tags: linux_architecture filesystem
+tags: linux
 categories: Linux
 pin: false
 ---

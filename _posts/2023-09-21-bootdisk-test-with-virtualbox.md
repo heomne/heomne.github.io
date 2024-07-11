@@ -5,7 +5,7 @@ updated: 2024-06-20
 tags:
   - troubleshooting
   - linux
-categories: Etc
+categories: Linux
 ---
 USB로 부팅디스크를 만들고나서 설치가 정상적으로 되는지 테스트를 하려면 사용하지않는 노트북이나 컴퓨터가 필요합니다. 사용하는 노트북으로도 테스트는 할 수 있겠지만 설치과정까지 테스트하기는 어렵습니다.(내 데이터가 다 날라갑니다..)
 

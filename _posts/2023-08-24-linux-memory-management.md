@@ -2,7 +2,7 @@
 title: "[Linux] 메모리 관리"
 author: heomne
 date: 2023-08-24
-tags: linux_architecture
+tags: linux study
 categories: Linux
 pin: false
 ---

@@ -5,7 +5,7 @@ tags:
   - linux
   - RHEL
   - troubleshooting
-categories: TroubleShooting
+categories: Linux
 ---
 이번에 RHEL 킥스타트를 만들게되면서 생긴 이슈를 정리한 글입니다. 킥스타트 제작방법까지 적기에는 글 내용이 너무 길어 패스합니다.
 

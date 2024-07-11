@@ -2,9 +2,9 @@
 title: Bios 부팅 환경에서 USB 부팅디스크 테스트 (VMWare Workstation)
 author: heomne
 tags:
-  - troubleshoot
+  - troubleshooting
   - linux
-categories: Etc
+categories: Linux
 ---
 이전에 [VirtualBox에서 USB 부팅 디스크 테스트 방법](https://heomne.github.io/posts/bootdisk-test-with-virtualbox/)에 대한 글을 작성한 적이 있습니다. 유용하게 사용하고 있었는데,, 다른 고객사에서 BIOS(Legacy) 부팅 환경에서 킥스타트 USB 부팅 디스크를 요청하게되어 새로운 글을 작성하게 되었습니다.
 
