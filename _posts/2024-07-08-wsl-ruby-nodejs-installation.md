@@ -1,7 +1,7 @@
 ---
 title: "WSL에 Ruby 3.3.3, NodeJS 설치"
 author: heomne
-date: 2024-07-08
+date: 2024-07-08 +/-TTTT
 tags: blog linux
 categories: Blog
 pin: false
