@@ -14,7 +14,7 @@ CHK_UNTRACKED=$(git status --short --untracked)
 if [ -n "$CHK_UNTRACKED" ]; then
   git add .
   git commit -m "$COMMIT_MSG"
-  git push master
+  git push origin master
 
   # error
   if [ $? -ne 0 ]; then
