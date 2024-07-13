@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# heomne.github.io repository path
+# repository path
 REPO_PATH=/home/h_min/heomne.github.io/
 COMMIT_MSG="Automated commit on $(date)"
 
