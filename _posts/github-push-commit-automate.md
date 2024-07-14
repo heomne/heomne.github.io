@@ -1,5 +1,5 @@
 ---
-title: "Crontab으로 GitHub Commit&Push 자동화, 스케쥴러 구성"
+title: "Crontab으로 GitHub Commit & Push 자동화, 스케쥴러 구성"
 author: heomne
 date: 2024-07-14 +/-TTTT
 tags: linux blog
@@ -9,8 +9,7 @@ pin: false
 GitHub Commit과 Push를 자동화할 방법을 찾다가, 리눅스 Crontab에 자동화 스크립트가 실행되도록 하면 어떨까 생각하여 내용을 정리해봤습니다.
 
 준비물은 아래와 같습니다.
-- Crontab을 구성할 수 있는 리눅스 서버
-  - 어떤 배포판이든 상관없음(Rocky, Ubuntu, RHEL, CentOS ...)
+- Crontab을 구성할 수 있는 리눅스 서버 어떤 배포판이든 상관없음(Rocky, Ubuntu, RHEL, CentOS ...)
 - Commit과 Push를 자동으로 수행할 스크립트
 
 ## 자동화 스크립트 작성
