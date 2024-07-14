@@ -47,3 +47,20 @@ else
 fi
 ```
 레포지토리 경로는 `REPO_PATH`, 커밋 메시지는 `$COMMIT_MSG`를 수정하여, 자신이 구성한 서버에 맞게 수정해줍니다.
+스크립트를 실행해보면 아래와 같은 결과가 나오면서 정상적으로 GitHub에 커밋 & 푸시가 진행된 것을 볼 수 있습니다.
+```terminal
+h_min@HEO24:~/heomne.github.io/tools$ ./autopush.sh 
+[master eb460f0] Automated commit on Sun Jul 14 22:45:07 KST 2024
+ 1 file changed, 49 insertions(+)
+ create mode 100644 _posts/github-push-commit-automate.md
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 1.25 KiB | 1.25 MiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/heomne/heomne.github.io.git
+   8fc93eb..eb460f0  master -> master
+Successfully pushed changes to the repository
+```
