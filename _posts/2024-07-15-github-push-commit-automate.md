@@ -37,6 +37,9 @@ GITHUB_TOKEN=<token값>
 ```bash
 #!/bin/bash
 
+# Log file path
+LOG_FILE="/home/user/autopush.log"
+
 # import github token from local server
 source /root/token.sh
 
@@ -45,27 +48,31 @@ REPO_PATH=/home/user/heomne.github.io/
 COMMIT_MSG="Automated commit on $(date)"
 
 # move to repository path
-cd "$REPO_PATH" || exit
+cd "$REPO_PATH" >> "$LOG_FILE" 2>&1 || {
+  echo "[$(date)] Error: Failed to change directory to $REPO_PATH" >> "$LOG_FILE"
+  exit 1
+}
 
 # Check untracked files
 CHK_UNTRACKED=$(git status --short --untracked)
 
 # Commit & Push
 if [ -n "$CHK_UNTRACKED" ]; then
-  git add .
-  git commit -m "$COMMIT_MSG"
-  git push https://heomne:$HEOMNE_TOKEN@github.com/heomne/heomne.github.io.git
+  git add . >> "$LOG_FILE" 2>&1
+  git commit -m "$COMMIT_MSG" >> "$LOG_FILE" 2>&1
+  git push https://heomne:$HEOMNE_TOKEN@github.com/heomne/heomne.github.io.git >> "$LOG_FILE" 2>&1
 
   # error message
   if [ $? -ne 0 ]; then
-    echo "Error: Failed to push changes to the repository"
+    echo "Error: Failed to push changes to the repository" >> "$LOG_FILE"
     exit 1
   fi
-  echo "Successfully pushed changes to the repository"
+  echo "Successfully pushed changes to the repository" >> "$LOG_FILE"
 else
-  echo "No changes to commit"
+  echo "No changes to commit" >> "$LOG_FILE"
 fi
 ```
+- `LOG_FILE`: 스크립트 로그를 저장하는 경로입니다. 정상적으로 스크립트가 작동되었는지를 확인할 수 있습니다.
 - `source /root/token.sh`: 토큰값 변수를 불러오도록 명령어를 입력합니다.
 - `REPO_PATH`: 클론한 레포지토리의 경로를 입력해줍니다.
 - `COMMIT_MSG`: 자동화 스크립트가 실행될 때 커밋 메시지를 어떻게 할지 설정합니다.
@@ -93,7 +100,10 @@ crontab 형식은 아래와 같습니다.
 
 형식을 참고하여 아래와 같이 crontab을 설정해줍니다.
 crontab 설정 명령어는 `crontab -e` 입니다. 저는 오후 11시 30분에 실행되도록 구성했습니다.
+```bash
+30 23 * * * root /home/user/heomne.github.io/tools/autopush.sh
 ```
 
+정상적으로 스크립트가 실행되었을 경우 로그에는 아래와 같은 텍스트가 기록되어있습니다.
 
 
