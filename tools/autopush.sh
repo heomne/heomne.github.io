@@ -7,13 +7,12 @@ COMMIT_MSG="Automated commit on $(date)"
 # move to repository path
 cd "$REPO_PATH" || exit
 
-# Check untracked files
-CHK_UNTRACKED=$(git status --short --untracked)
-
 # git global config set
 git config --global user.name heomne
 git config --global user.email hmin4957@naver.com
 
+# Check untracked files
+CHK_UNTRACKED=$(git status --short --untracked)
 
 # Commit & Push
 if [ -n "$CHK_UNTRACKED" ]; then
