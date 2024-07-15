@@ -10,6 +10,11 @@ source /root/token.sh
 REPO_PATH=/home/user/heomne.github.io/
 COMMIT_MSG="Automated commit on $(date)"
 
+# init comment
+echo -e "\n" >> "$LOG_FILE"
+echo "---" >> "$LOG_FILE"
+echo $(date) >> "$LOG_FILE"
+
 # move to repository path
 cd "$REPO_PATH" >> "$LOG_FILE" 2>&1 || {
   echo "[$(date)] Error: Failed to change directory to $REPO_PATH" >> "$LOG_FILE"

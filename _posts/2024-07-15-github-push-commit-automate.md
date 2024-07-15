@@ -16,9 +16,13 @@ GitHub Commit과 Push를 자동화할 방법을 찾다가, 리눅스 Crontab에 
 ## GitHub Token 발급
 GitHub Token이 없다면 자동화 스크립트가 시작될 때 매 번 유저 이름과 이메일을 입력해야합니다. 이러면 자동화의 의미가 사라지니 레포지토리에 커밋과 푸시를 할 수 있는 권한을 가진 토큰을 발급하여 바로바로 스크립트가 작동되도록 해줍니다.
 GitHub Token은 GitHub 로그인 후 [계정 설정] > [Developer Settings] > [Personal access tokens] 메뉴에서 생성할 수 있습니다. [Generate new token]을 클릭하여 토큰을 생성해줍니다.
+
 ![image1](/assets/post_img/github-push-commit-automate/image.png)
+
 저는 Fine-grained tokens로 생성해주었고, 레포지토리는 깃블로그로 사용중인 레포지토리만 지정 후 권한은 Repository permissions에서 Commit statuses, Contents 만 RW로 설정해주었습니다.
+
 ![alt text](/assets/post_img/github-push-commit-automate/image2.png)
+
 ![alt text](/assets/post_img/github-push-commit-automate/image3.png)
 
 토큰을 생성하면 토큰값이 나오게 되는데, 토큰값을 복사 후 메모장이나 클립보드에 복사해주세요. 페이지를 벗어나면 다시 토큰값을 볼 수 없습니다.
@@ -46,6 +50,11 @@ source /root/token.sh
 # repository path.
 REPO_PATH=/home/user/heomne.github.io/
 COMMIT_MSG="Automated commit on $(date)"
+
+# init comment
+echo -e "\n" >> "$LOG_FILE"
+echo "---" >> "$LOG_FILE"
+echo $(date) >> "$LOG_FILE"
 
 # move to repository path
 cd "$REPO_PATH" >> "$LOG_FILE" 2>&1 || {
