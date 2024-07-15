@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# import github token from local server
+source ./root/token.sh
+
 # repository path.
 REPO_PATH=/home/user/heomne.github.io/
 COMMIT_MSG="Automated commit on $(date)"
@@ -14,7 +17,7 @@ CHK_UNTRACKED=$(git status --short --untracked)
 if [ -n "$CHK_UNTRACKED" ]; then
   git add .
   git commit -m "$COMMIT_MSG"
-  git push origin master
+  git push https://heomne:$HEOMNE_TOKEN@github.com/heomne/heomne.github.io.git
 
   # error message
   if [ $? -ne 0 ]; then
