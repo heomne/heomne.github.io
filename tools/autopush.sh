@@ -12,8 +12,9 @@ COMMIT_MSG="Automated commit on $(date)"
 
 # init comment
 echo -e "\n" >> "$LOG_FILE"
-echo "---" >> "$LOG_FILE"
-echo $(date) >> "$LOG_FILE"
+echo "-----" >> "$LOG_FILE"
+echo "$(date) autopush log" >> "$LOG_FILE"
+echo "-----" >> "$LOG_FILE"
 
 # move to repository path
 cd "$REPO_PATH" >> "$LOG_FILE" 2>&1 || {

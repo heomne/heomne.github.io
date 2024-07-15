@@ -53,8 +53,9 @@ COMMIT_MSG="Automated commit on $(date)"
 
 # init comment
 echo -e "\n" >> "$LOG_FILE"
-echo "---" >> "$LOG_FILE"
-echo $(date) >> "$LOG_FILE"
+echo "-----" >> "$LOG_FILE"
+echo "$(date) autopush log" >> "$LOG_FILE"
+echo "-----" >> "$LOG_FILE"
 
 # move to repository path
 cd "$REPO_PATH" >> "$LOG_FILE" 2>&1 || {
@@ -114,5 +115,15 @@ crontab 설정 명령어는 `crontab -e` 입니다. 저는 오후 11시 30분에
 ```
 
 정상적으로 스크립트가 실행되었을 경우 로그에는 아래와 같은 텍스트가 기록되어있습니다.
+```terminal
+-----
+Mon Jul 15 10:43:37 PM KST 2024 autopush log
+-----
+[master e7b1437] Automated commit on Mon Jul 15 10:43:37 PM KST 2024
+ 2 files changed, 14 insertions(+)
+To https://github.com/heomne/heomne.github.io.git
+   7bf4ac3..e7b1437  master -> master
+Successfully pushed changes to the repository
+```
 
-
+간단하게 만든 자동화 스크립트이기 때문에 필요한 기능이 있으면 계속해서 수정해 나갈 것 같습니다. 가장 최근버전으로 업데이트된 스크립트는 (여기)[https://github.com/heomne/heomne.github.io/blob/master/tools/autopush.sh]에서 확인할 수 있으니 참고해주시면 될 것 같습니다.
