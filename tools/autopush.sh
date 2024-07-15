@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # import github token from local server
-source ./root/token.sh
+source /root/token.sh
 
 # repository path.
 REPO_PATH=/home/user/heomne.github.io/
