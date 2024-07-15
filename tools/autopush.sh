@@ -16,7 +16,7 @@ if [ -n "$CHK_UNTRACKED" ]; then
   git commit -m "$COMMIT_MSG"
   git push origin master
 
-  # error
+  # error message
   if [ $? -ne 0 ]; then
     echo "Error: Failed to push changes to the repository"
     exit 1
