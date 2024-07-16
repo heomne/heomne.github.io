@@ -19,6 +19,7 @@ GitHub Token은 GitHub 로그인 후 [계정 설정] > [Developer Settings] > [P
 
 ![image1](/assets/post_img/github-push-commit-automate/image.png)
 
+
 저는 Fine-grained tokens로 생성해주었고, 레포지토리는 깃블로그로 사용중인 레포지토리만 지정했습니다.
 
 ![image2](/assets/post_img/github-push-commit-automate/image2.png)
