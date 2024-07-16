@@ -19,11 +19,13 @@ GitHub Token은 GitHub 로그인 후 [계정 설정] > [Developer Settings] > [P
 
 ![image1](/assets/post_img/github-push-commit-automate/image.png)
 
-저는 Fine-grained tokens로 생성해주었고, 레포지토리는 깃블로그로 사용중인 레포지토리만 지정 후 권한은 Repository permissions에서 Commit statuses, Contents 만 RW로 설정해주었습니다.
+저는 Fine-grained tokens로 생성해주었고, 레포지토리는 깃블로그로 사용중인 레포지토리만 지정했습니다.
 
-![alt text](/assets/post_img/github-push-commit-automate/image2.png)
+![image2](/assets/post_img/github-push-commit-automate/image2.png)
 
-![alt text](/assets/post_img/github-push-commit-automate/image3.png)
+권한은 Repository permissions에서 Commit statuses, Contents 만 RW로 설정해주었습니다.
+
+![image3](/assets/post_img/github-push-commit-automate/image3.png)
 
 토큰을 생성하면 토큰값이 나오게 되는데, 토큰값을 복사 후 메모장이나 클립보드에 복사해주세요. 페이지를 벗어나면 다시 토큰값을 볼 수 없습니다.
 
@@ -114,8 +116,8 @@ crontab 설정 명령어는 `crontab -e` 입니다. 저는 오후 11시 30분에
 30 23 * * * root /home/user/heomne.github.io/tools/autopush.sh
 ```
 
-정상적으로 스크립트가 실행되었을 경우 로그에는 아래와 같은 텍스트가 기록되어있습니다.
-```terminal
+정상적으로 스크립트가 실행되었을 경우 `/home/user/autopush.log` 로그에는 아래와 같이 변경사항이 Push된 기록이 있습니다.
+```bash
 -----
 Mon Jul 15 10:43:37 PM KST 2024 autopush log
 -----
@@ -126,4 +128,4 @@ To https://github.com/heomne/heomne.github.io.git
 Successfully pushed changes to the repository
 ```
 
-간단하게 만든 자동화 스크립트이기 때문에 필요한 기능이 있으면 계속해서 수정해 나갈 것 같습니다. 가장 최근버전으로 업데이트된 스크립트는 (여기)[https://github.com/heomne/heomne.github.io/blob/master/tools/autopush.sh]에서 확인할 수 있으니 참고해주시면 될 것 같습니다.
+간단하게 만든 자동화 스크립트이기 때문에 필요한 기능이 있으면 계속해서 수정해 나갈 것 같습니다. 가장 최근버전으로 업데이트된 스크립트는 (여기)[https://github.com/heomne/heomne.github.io/blob/master/tools/autopush.sh]에서 확인할 수 있으니 참고해주세요.
