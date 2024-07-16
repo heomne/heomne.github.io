@@ -128,4 +128,4 @@ To https://github.com/heomne/heomne.github.io.git
 Successfully pushed changes to the repository
 ```
 
-간단하게 만든 자동화 스크립트이기 때문에 필요한 기능이 있으면 계속해서 수정해 나갈 것 같습니다. 가장 최근버전으로 업데이트된 스크립트는 (여기)[https://github.com/heomne/heomne.github.io/blob/master/tools/autopush.sh]에서 확인할 수 있으니 참고해주세요.
+간단하게 만든 자동화 스크립트이기 때문에 필요한 기능이 있으면 계속해서 수정해 나갈 것 같습니다. 가장 최근버전으로 업데이트된 스크립트는 [여기](https://github.com/heomne/heomne.github.io/blob/master/tools/autopush.sh)에서 확인할 수 있으니 참고해주세요.
