@@ -13,7 +13,6 @@ vsphere에 생성한 VM에서 Pacemaker의 ipmilan STONITH를 테스트할 환�
 2. 생성한 RHEL VM에 KVM 설치
 3. KVM에 RHEL VM 생성, 생성한 VM에 VirtualBMC 설치
 
-그림으로 정리하면 아래와 같은 아키텍처를 가집니다.
+그림으로 정리하면 아래와 같은 아키텍처로 구성됩니다.
 ![image](/assets/post_img/nested-virtualization-vsphere-kvm/image.png)
-
 
