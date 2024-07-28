@@ -89,44 +89,217 @@ flags 출력이 되어야 정상이며, 출력되는 텍스트가 없을 경우 
 - virt-manager 명령어 입력하여 virtual machine manager를 켭니다.
     - `virt-manager`
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/20f13b1e-385f-4e51-9943-6e23e84678f4/image-20230710-063159.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063159.png){: width="800"}{: .left}
     
 
 ## KVM 네트워크 구성
 
 - 네트워크는 NAT망과 내부망 2개를 생성합니다., [Edit] - [Connection Details]를 클릭합니다.
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/c87442b9-dfa0-4e86-91f4-ab1254e6949b/image-20230710-063237.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063237.png){: .left}
     
 - 네트워크는 현재 default만 존재하는데, 내부망을 생성하기위해 좌측하단에 + 버튼을 클릭합니다.
 - Name은 internal, Mode는 Isolated를 선택하고, IPv4 대역폭은 필요하면 설정합니다. (start를 100으로 수정했습니다.)
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/1616204f-8cd6-4230-b151-c1e502ab8481/image-20230710-063308.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063308.png){: .left}
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/ffbcf280-bac5-4e16-908b-df5299c73910/image-20230710-063328.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063328.png){: .left}
     
 
 ## VM 생성
 
 - Local install media 선택 후 [Forward]를 클릭합니다.
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/887e8a1e-ff2e-4ecb-ba11-77d39f3a52e6/image-20230710-063409.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063409.png){: width="800"}{: .left}
     
 - iso 파일 선택 후 Forward를 클릭합니다. (iso 파일은 다운로드 받아서 KVM 서버에 넣어주어야합니다.)
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/32f35cce-624a-41c5-88f0-a9272602ffad/image-20230710-063438.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063438.png){: width="800"}{: .left}
     
 - 메모리 설정 (Memory 2G, CPU 2), 디스크 설정 (20G), 이름 설정 후 forward를 클릭합니다.
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/bb53d684-24c8-494f-8968-57a91782a010/image-20230710-063506.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063506.png){: width="800"}{: .left}
     
 - 생성된 VM을 더블클릭하여 새 창을 띄운 후 전구 버튼 클릭하여 VM 하드웨어 정보를 전환합니다.
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/2fc5cb1d-9d9d-480a-97a2-c621e7a37d79/image-20230710-063548.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063548.png){: width="800"}{: .left}
     
 - 좌측 하드웨어 목록 우클릭 후 [Add hardware]를 클릭합니다.
 - Network에서 internal isolated network 클릭 후 finish를 클릭합니다.
     
-    !https://prod-files-secure.s3.us-west-2.amazonaws.com/cb52674e-2e4c-4737-9639-d889f2ddb236/e05f025b-8d13-431f-bbf1-0222c0fce471/image-20230710-063613.png
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063613.png){: width="800"}{: .left}
     
 이제 KVM에 RHEL VM을 설치할 수 있습니다. 설치 후 NIC가 2개로 나오는지 확인합니다.
+
+
+## virtualBMC 설치
+
+- virtualBMC를 사용하기위해 다음 명령어를 사용하여 패키지를 설치합니다.
+    
+    `yum install python3-pip`
+    
+    `pip3 install -U pip`
+    
+    `yum install gcc python3-devel ipmitool`
+    
+    `pip3 install virtualbmc`
+    
+- vbmc 시스템 데몬을 생성해줍니다.
+    
+    `vi /usr/lib/systemd/system/vbmcd.service`
+    
+    ```bash
+    [Service]
+    BlockIOAccounting = True
+    CPUAccounting = True
+    ExecReload = /bin/kill -HUP $MAINPID
+    ExecStart = /usr/local/bin/vbmcd --foreground
+    Group = root
+    MemoryAccounting = True
+    PrivateDevices = False
+    PrivateNetwork = False
+    PrivateTmp = False
+    PrivateUsers = False
+    Restart = on-failure
+    RestartSec = 2
+    Slice = vbmc.slice
+    TasksAccounting = True
+    TimeoutSec = 120
+    Type = simple
+    User = root
+    
+    [Unit]
+    After = libvirtd.service
+    After = syslog.target
+    After = network.target
+    Description = vbmc service
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    
+
+	`systemctl daemon-reloadsystemctl enable --now vbmcd`
+
+- vbmc 포트를 추가합니다.
+    
+    `vbmc add --username {username} --password {password} --port {ipmi-port} --libvirt-uri qemu:///system {VM-name}`
+    
+    `vbmc add --username pacemaker01 --password pacemaker01 --port 6230 --libvirt-uri qemu:///system Pacemaker01`
+    
+    `vbmc add --username pacemaker02 --password pacemaker02 --port 6231 --libvirt-uri qemu:///system Pacemaker02`
+    
+- vbmc 리스트를 확인합니다.
+    
+    `vbmc list`
+    
+    ```terminal
+    [root@PACEMAKERKVM01 ~]# vbmc list
+    +-------------+---------+---------+------+
+    | Domain name | Status  | Address | Port |
+    +-------------+---------+---------+------+
+    | Pacemaker01 | running | ::      | 6230 |
+    | Pacemaker02 | running | ::      | 6231 |
+    +-------------+---------+---------+------+
+    ```
+    
+- vbmc 상세정보를 확인할 수 있습니다.
+`vbmc show Pacemaker01`
+    
+    ```terminal
+    [root@PACEMAKERKVM01 ~]# vbmc show Pacemaker01
+    +-----------------------+----------------+
+    | Property              | Value          |
+    +-----------------------+----------------+
+    | active                | True           |
+    | address               | ::             |
+    | domain_name           | Pacemaker01    |
+    | libvirt_sasl_password | ***            |
+    | libvirt_sasl_username | None           |
+    | libvirt_uri           | qemu:///system |
+    | password              | ***            |
+    | port                  | 6230           |
+    | status                | running        |
+    | username              | pacemaker01    |
+    +-----------------------+----------------+
+    ```
+    
+- vmbc를 설치하면 네트워크 브릿지(virbr1)가 하나 생성됩니다. (virbr0은 KVM브릿지) KVM 게스트에서는 virbr1의 아이피를 통해 ipmi를 확인할 수 있습니다.
+`ip a`
+    
+    ```terminal
+    [root@PACEMAKERKVM01 ~]# ip a
+    ...
+    3: virbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+        link/ether 52:54:00:15:a6:42 brd ff:ff:ff:ff:ff:ff
+        inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+           valid_lft forever preferred_lft forever
+    4: virbr1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+        link/ether 52:54:00:f7:aa:4b brd ff:ff:ff:ff:ff:ff
+        inet 192.168.100.1/24 brd 192.168.100.255 scope global virbr1
+           valid_lft forever preferred_lft forever
+    ...
+    ```
+    
+- ipmitool로 노드 상태를 확인합니다.
+`ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 192.168.100.1 -p 6230 chassis status`
+    
+    ```terminal
+    [root@PACEMAKERKVM01 ~]# ipmitool -I lanplus -U pacemaker01 -P pacemaker01 \
+    -H 192.168.100.1 -p 6230 chassis status
+    System Power         : on
+    Power Overload       : false
+    Power Interlock      : inactive
+    Main Power Fault     : false
+    Power Control Fault  : false
+    Power Restore Policy : always-off
+    Last Power Event     :
+    Chassis Intrusion    : inactive
+    Front-Panel Lockout  : inactive
+    Drive Fault          : false
+    Cooling/Fan Fault    : false
+    ```
+    
+- 노드 시작, 종료, 재시작 테스트 명령어는 아래를 참고합니다.
+`ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 172.16.0.65 -p 6230 chassis power on`
+    
+    `ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 172.16.0.65 -p 6230 chassis power off`
+    
+    `ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 172.16.0.65 -p 6230 chassis power reset`
+    
+
+## ipmitool STONITH 생성 후 테스트
+
+- Pacemaker 설치 과정은 생략하고, ipmilan STONITH 구성 후 정상적으로 작동하는지 테스트 해봅니다.
+- 각 노드에서 `ipmitool` 명령어로 통신되는지 확인합니다.
+    
+    `ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 192.168.100.1 -p 6230 chassis power on`
+    
+    `ipmitool -I lanplus -U pacemaker02 -P pacemaker02 -H 192.168.100.1 -p 6231 chassis power on`
+    
+    ```terminal
+    [root@PACEMAKER01 ~]# ipmitool -I lanplus -U pacemaker01 -P pacemaker01 -H 192.168.100.1 -p 6230 chassis power on
+    Chassis Power Control: Up/On
+    [root@PACEMAKER01 ~]# ipmitool -I lanplus -U pacemaker02 -P pacemaker02 -H 192.168.100.1 -p 6231 chassis power on
+    Chassis Power Control: Up/On
+    ```
+    
+- fence_ipmilan 생성합니다.
+    
+    `pcs stonith create fence_ipmilan-01 fence_ipmilan lanplus=1 username=pacemaker01 password=pacemaker01 ip=192.168.100.1 ipport=6230 pcmk_host_list="PACEMAKER01 PACEMAKER02" pcmk_delay_base=5s`
+    
+    `pcs stonith create fence_ipmilan-02 fence_ipmilan lanplus=1 username=pacemaker02 password=pacemaker02 ip=192.168.100.1 ipport=6231 pcmk_host_list="PACEMAKER01 PACEMAKER02"`
+    
+- Fencing Test를 진행합니다.
+    
+    PACEMAKER01# `pcs stonith fence PACEMAKER02`
+    
+    ```java
+    Node: PACEMAKER02 fenced
+    ```
+    
+    PACEMAKER02# `pcs stonith fence PACEMAKER01`
+    
+    ```java
+    Node: PACEMAKER02 fenced
+    ```
