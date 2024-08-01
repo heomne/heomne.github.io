@@ -1,7 +1,7 @@
 ---
 title: "[OpenShift] oc login internal error 500 해결 방법"
 author: heomne
-date: 2024-07-14 +/-TTTT
+date: 2024-08-01 +/-TTTT
 tags: openshift
 categories: OpenShift
 pin: false
