@@ -40,11 +40,11 @@ dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-re
 연결된 USB를 다시 마운트해봅니다.
 
 ```terminal
-mount /dev/sdb1 /mnt/usb
+[root@heomne ~]# mount /dev/sdb1 /mnt/usb
 FUSE exfat 1.3.0
 ```
 ```terminal
-root@localhost.localdomain /root # lsblk
+[root@heomne ~]# /root # lsblk
 NAME   MAJ:MIN RM    SIZE RO TYPE MOUNTPOINT
 sda      8:0    0     80G  0 disk
 ├─sda1   8:1    0      1G  0 part /boot
@@ -72,3 +72,6 @@ yum install ntfs-3g
 > disconnected에서 설치할 경우 `ntfs-3g` `ntfs-3g-libs` 패키지 2개가 필요합니다.
 
 이후 NTFS 파일시스템을 사용하는 USB연결 후 정상적으로 마운트되는지 확인합니다.
+
+## References
+![How to enable NTFS support in Red Hat Enterprise Linux?](https://access.redhat.com/solutions/23993)
