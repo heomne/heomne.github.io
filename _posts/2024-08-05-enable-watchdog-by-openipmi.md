@@ -2,7 +2,7 @@
 title: "[Linux] Watchdog 활성화 방법 (feat.OpenIpmI)"
 author: heomne
 date: 2024-08-05 +/-TTTT
-tags: linux
+tags: linux pacemaker
 categories: Linux
 pin: false
 ---
@@ -15,7 +15,7 @@ Watchdog은 시스템의 동작을 모니터링하고, 시스템이 응답하지
 ## Watchdog 지원여부 확인
 Watchdog은 하드웨어를 감시하는 툴이기때문에 베어메탈 환경에서 사용되는게 일반적이며, 베어메탈 환경에 IPMI(Intelligent Paltform Management Interface)가 설치되어있다면 손쉽게 활성화할 수 있습니다. 아래 명령어를 입력하여 서버에서 IPMI를 지원하는지 확인해볼 수 있습니다.
 
-- `deidecode | grep -A 10 IPMI`
+- `dmidecode | grep -A 10 IPMI`
 
 > IPMI는
   서버를 포함한 컴퓨터를 관리하고 모니터링 할 수 있는 기능을 제공하는 표준 플랫폼을 말합니다. 제조사에 상관없이 하드웨어가 IPMI를 지원하는 경우 동일한 방식의 관리와 모니터링을 할 수 있습니다. 
