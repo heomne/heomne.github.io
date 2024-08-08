@@ -19,9 +19,12 @@ mount: /mnt/usb: unknown filesystem type 'exfat'.
 다행히 NTFS, exfat을 마운트 할 수 있는 패키지를 설치하면 리눅스에도 마운트하여 파일을 사용할 수 있습니다.
 
 ## exfat 파일시스템 마운트 방법
-RHEL 8 버전 기준으로 테스트를 진행하였습니다. exfat 파일시스템을 마운트하기위해 필요한 패키지는 `exfatprogs` `fuse-exfat`입니다. RHEL 버전에 따라 필요한 패키지가 다를 수 있으니 이 경우 다른 글을 참조해야합니다.
+테스트는 RHEL 8 버전 기준으로 테스트를 진행하였습니다. 
 
-`exfatprogs` 패키지는 `epel-release`라는 레포지토리를 통해서 받을 수 있고, `fuse-exfat` 패키지는 `rpmfusion-free-release` 레포지토리를 통해 설치할 수 있습니다. 아래 명령어를 입력하여 두 레포지토리를 추가해줍니다.
+exfat 파일시스템을 마운트하기위해 필요한 패키지는 `exfatprogs` `fuse-exfat`입니다. RHEL 버전에 따라 필요한 패키지가 다를 수 있으니 이 경우 다른 글을 참조해야합니다.
+
+`exfatprogs` 패키지는 `epel-release`라는 레포지토리를 통해서 받을 수 있고, `fuse-exfat` 패키지는 `rpmfusion-free-release` 레포지토리를 통해 설치할 수 있습니다. 
+아래 명령어를 입력하여 두 레포지토리를 추가해줍니다.
 
 ```terminal
 yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -32,7 +35,7 @@ dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-re
 
 레포지토리 등록 후 패키지를 설치합니다.
 
-- yum -y install exfatprogs fuse-exfat
+- `yum -y install exfatprogs fuse-exfat`
 
 연결된 USB를 다시 마운트해봅니다.
 
