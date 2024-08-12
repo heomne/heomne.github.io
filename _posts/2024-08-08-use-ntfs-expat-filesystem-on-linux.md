@@ -74,4 +74,4 @@ yum install ntfs-3g
 이후 NTFS 파일시스템을 사용하는 USB연결 후 정상적으로 마운트되는지 확인합니다.
 
 ## References
-![How to enable NTFS support in Red Hat Enterprise Linux?](https://access.redhat.com/solutions/23993)
+[How to enable NTFS support in Red Hat Enterprise Linux?](https://access.redhat.com/solutions/23993)
