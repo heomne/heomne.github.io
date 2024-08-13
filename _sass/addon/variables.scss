@@ -29,15 +29,15 @@ $code-icon-width: 1.75rem !default;
 
 /* fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('/assets/fonts/noto-sans-kr/index.css');
 
 .noto-sans-kr {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "Noto Sans KR";
     font-optical-sizing: auto;
     font-weight: normal;
     font-style: normal;
   }
 
-$font-family-base: 'Noto Sans KR', 'Source Sans Pro', 'Microsoft Yahei', sans-serif !default;
-$font-family-heading: 'Noto Sans KR', Lato, 'Microsoft Yahei', sans-serif !default;
+$font-family-base: 'Noto Sans KR'; // , 'Source Sans Pro', 'Microsoft Yahei', sans-serif !default;
+$font-family-heading: 'Noto Sans KR';// , Lato, 'Microsoft Yahei', sans-serif !default;
 
