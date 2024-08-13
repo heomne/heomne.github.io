@@ -1,7 +1,7 @@
 ---
 title: "구글 서치 콘솔 색인 자동화 방법 (Indexing API)"
 author: heomne
-date: 2024-08-08 +/-TTTT
+date: 2024-08-12 +/-TTTT
 tags: blog linux
 categories: Blog
 pin: false
