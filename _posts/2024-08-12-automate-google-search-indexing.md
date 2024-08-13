@@ -20,37 +20,37 @@ pin: false
 
 ## 구글 콘솔에서 서비스 계정 생성
 - 먼저 [구글 서비스 계정](https://console.cloud.google.com/iam-admin/serviceaccounts?hl=ko)을 생성해야합니다. 구글 서비스 계정 페이지로 이동한 후, 프로젝트 만들기를 클릭합니다.
-![구글 서비스 계정 생성 이미지1](/assets/post_img/automate-google-search-indexing/image.png)
+![구글 서비스 계정 생성 이미지1](/assets/post_img/automate-google-search-indexing/image.webp)
 
 - 원하는 프로젝트 이름을 입력한 후 [만들기]를 클릭합니다.
-![구글 서비스 계정 생성 이미지2](/assets/post_img/automate-google-search-indexing/image-1.png)
+![구글 서비스 계정 생성 이미지2](/assets/post_img/automate-google-search-indexing/image-1.webp)
 
 - 프로젝트가 선택된 상태에서 [+ 서비스 계정 만들기]를 클릭합니다.
-![구글 서비스 계정 생성 이미지3](/assets/post_img/automate-google-search-indexing/image-2.png)
+![구글 서비스 계정 생성 이미지3](/assets/post_img/automate-google-search-indexing/image-2.webp)
 
 - 서비스 계정 이름을 입력하고 하단에 [완료]를 클릭합니다. (선택사항은 건들 필요 없습니다.)
-![구글 서비스 계정 생성 이미지4](/assets/post_img/automate-google-search-indexing/image-3.png)
+![구글 서비스 계정 생성 이미지4](/assets/post_img/automate-google-search-indexing/image-3.webp)
 
 - 아래와 같이 서비스 계정이 생성되었습니다.
-![구글 서비스 계정 생성 이미지5](/assets/post_img/automate-google-search-indexing/image-4.png)
+![구글 서비스 계정 생성 이미지5](/assets/post_img/automate-google-search-indexing/image-4.webp)
 
 - 이제 키를 생성해주어야합니다. 우측에 작업에 있는 메뉴 버튼을 누르고, 키 관리를 클릭합니다.
-![구글 서비스 계정 생성 이미지6](/assets/post_img/automate-google-search-indexing/image-5.png)
+![구글 서비스 계정 생성 이미지6](/assets/post_img/automate-google-search-indexing/image-5.webp)
 
 - 키 추가를 클릭합니다. 새 키 만들기를 클릭합니다. 키 유형은 JSON으로 선택하여 만들기를 클릭하고, 생성된 키는 로컬에 파일로 저장해줍니다.
-![구글 서비스 계정 생성 이미지7](/assets/post_img/automate-google-search-indexing/image-6.png)
+![구글 서비스 계정 생성 이미지7](/assets/post_img/automate-google-search-indexing/image-6.webp)
 > 한번 키 파일이 생성되면 다시 다운로드 하기가 어려우니 잘 보관해야합니다.
 
 - 이제 서비스 계정 생성이 완료되었습니다. 마지막으로 서비스 계정으로 indexing api를 사용할 수 있도록 설정해주어야합니다.
 콘솔 검색창에서 indexing api를 검색하여 나오는 제일 첫 번째 항목을 클릭합니다.
-![구글 서비스 계정 생성 이미지8](/assets/post_img/automate-google-search-indexing/image-7.png)
+![구글 서비스 계정 생성 이미지8](/assets/post_img/automate-google-search-indexing/image-7.webp)
 
 - Web Search Indexing API 사용을 클릭합니다.
-![구글 서비스 계정 생성 이미지9](/assets/post_img/automate-google-search-indexing/image-8.png)
+![구글 서비스 계정 생성 이미지9](/assets/post_img/automate-google-search-indexing/image-8.webp)
 
 ## 구글 서치 콘솔에 소유자 계정 추가
 이제 생성한 서비스 계정을 구글 서치 콘솔에 소유자로 추가해주어야합니다. [구글 서치 콘솔](https://search.google.com/search-console/welcome?hl=ko)로 이동하여 속성 선택 후, [설정]에 [사용자 및 권한] 탭에 소유자 권한으로 서비스 계정을 추가해줍니다.
-![구글 서치 콘솔 소유자 추가](/assets/post_img/automate-google-search-indexing/image-9.png)
+![구글 서치 콘솔 소유자 추가](/assets/post_img/automate-google-search-indexing/image-9.webp)
 
 
 ## 리눅스에 파이썬 설치

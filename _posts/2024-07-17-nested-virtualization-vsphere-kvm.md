@@ -15,7 +15,7 @@ ESXi에 생성한 RHEL VM에서 Pacemaker의 ipmilan STONITH를 테스트할 환
 
 그림으로 정리하면 아래와 같은 아키텍처로 구성됩니다.
 
-![image](/assets/post_img/nested-virtualization-vsphere-kvm/image.png){: width="800"}{: .left}
+![image](/assets/post_img/nested-virtualization-vsphere-kvm/image.webp){: width="800"}{: .left}
 
 하이퍼바이저로 설치된 ESXi에 RHEL VM을 생성 후, RHEL에 KVM을 생성하여 VM을 하나 더 생성합니다. 다양한 환경에서의 테스트를 목적으로 하기 때문에 위와 같은 아키텍처를 구성했고, 운영환경에서는 당연히 사용하는 케이스가 없을 것으로 생각됩니다. 내용을 찾아보니 이러한 구성을 중첩된 가상화(Nested Virtualization)라고 부르는 듯 합니다.
 
@@ -89,45 +89,45 @@ flags 출력이 되어야 정상이며, 출력되는 텍스트가 없을 경우 
 - virt-manager 명령어 입력하여 virtual machine manager를 켭니다.
     - `virt-manager`
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063159.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063159.webp){: width="800"}{: .left}
     
 
 ## KVM 네트워크 구성
 
 - 네트워크는 NAT망과 내부망 2개를 생성합니다., [Edit] - [Connection Details]를 클릭합니다.
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063237.png){: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063237.webp){: .left}
     
 - 네트워크는 현재 default만 존재하는데, 내부망을 생성하기위해 좌측하단에 + 버튼을 클릭합니다.
 - Name은 internal, Mode는 Isolated를 선택하고, IPv4 대역폭은 필요하면 설정합니다. (start를 100으로 수정했습니다.)
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063308.png){: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063308.webp){: .left}
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063328.png){: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063328.webp){: .left}
     
 
 ## VM 생성
 
 - Local install media 선택 후 [Forward]를 클릭합니다.
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063409.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063409.webp){: width="800"}{: .left}
     
 - iso 파일 선택 후 Forward를 클릭합니다. (iso 파일은 다운로드 받아서 KVM 서버에 넣어주어야합니다.)
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063438.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063438.webp){: width="800"}{: .left}
     
 - 메모리 설정 (Memory 2G, CPU 2), 디스크 설정 (20G), 이름 설정 후 forward를 클릭합니다.
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063506.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063506.webp){: width="800"}{: .left}
     
 - 생성된 VM을 더블클릭하여 새 창을 띄운 후 전구 버튼 클릭하여 VM 하드웨어 정보를 전환합니다.
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063548.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063548.webp){: width="800"}{: .left}
     
 - 좌측 하드웨어 목록 우클릭 후 [Add hardware]를 클릭합니다.
 - Network에서 internal isolated network 클릭 후 finish를 클릭합니다.
     
-    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063613.png){: width="800"}{: .left}
+    ![image1](/assets/post_img/nested-virtualization-vsphere-kvm/image-20230710-063613.webp){: width="800"}{: .left}
     
 이제 KVM에 RHEL VM을 설치할 수 있습니다. 설치 후 NIC가 2개로 나오는지 확인합니다.
 

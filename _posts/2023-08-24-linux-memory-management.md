@@ -28,15 +28,15 @@ Swap:            0B          0B          0B
 
 `free` 명령어를 입력했을 때 출력되는 내용을 그림으로 나타내면 아래와 같습니다.
 
-![](/assets/post_img/screenshot-2023-08-30-104547.png)
+![](/assets/post_img/screenshot-2023-08-30-104547.webp)
 
 메모리 사용량이 증가하면 아래와 같이 메모리 사용량이 줄어들게 됩니다.
 
-![](/assets/post_img/screenshot-2023-08-30-104822.png)
+![](/assets/post_img/screenshot-2023-08-30-104822.webp)
 
 메모리 관리시스템은 메모리를 확보하기위해 커널 내부의 해제 가능한 메모리 영역을 해제합니다.
 
-![](/assets/post_img/screenshot-2023-08-30-111538.png)
+![](/assets/post_img/screenshot-2023-08-30-111538.webp)
 
 만약 확보할 메모리 영역이 없어 메모리 부족 현상이 나타날 경우(Out Of Memory), 시스템은 OOM Killer기능을 통해 프로세스를 강제로 종료하고 메모리를 확보합니다.
 
