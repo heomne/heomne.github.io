@@ -70,7 +70,7 @@ Type "help", "copyright", "credits" or "license" for more information.
   - `pip3 install virtualenv`
   - `pip3 install requests`
 
-- 서비스 계정을 생성할 때 추가했던 JSON 파일 방식의 키를 리눅스 서버로 옮깁니다. 특정 경로에 파일을 추가해줍니다. 저는 `/root/indexapi` 경로에 추가했습니다.
+- 서비스 계정을 생성할 때 추가했던 JSON 파일 키를 리눅스 서버로 옮깁니다. 원하는 경로에 파일을 추가해줍니다. 저는 `/root/indexapi` 경로에 추가했습니다.
 
 - `/root/indexing/indexing.py` 파일을 생성하고, 아래의 스크립트를 복사/붙여넣기합니다.
 
@@ -155,7 +155,7 @@ Response content: {
 
 ```terminal
 30 23 * * * /home/user/heomne.github.io/tools/autopush.sh
-* 2 * * * /root/indexapi/indexing.py >> /root/indexapi/indexing.log
+00 2 * * * /root/indexapi/indexing.py >> /root/indexapi/indexing.log
 ```
 
 파이썬 스크립트를 실행하면서 나오는 로그를 `indexing.log` 파일에 저장하도록 작성해주었습니다. 문제가 생겼을 경우 로그를 통해 어떤 부분에서 문제가 생겼는지 확인이 가능합니다.
