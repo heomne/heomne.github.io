@@ -59,9 +59,8 @@ indexing api를 자동화 시키는 방법은 여러가지가 있지만, 이 글
 - 먼저 파이썬을 설치해줍니다. 아래 명령어로 설치합니다.
   - `yum install python3.12`
 ```terminal
-[root@heomne indexapi]# python
-Python 3.9.18 (main, Jan 24 2024, 00:00:00)
-[GCC 11.4.1 20231218 (Red Hat 11.4.1-3)] on linux
+[root@heomne bin]# python3.12
+Python 3.12.1 (main, May  3 2024, 00:00:00) [GCC 11.4.1 20231218 (Red Hat 11.4.1-3)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
