@@ -5,8 +5,6 @@ date: 2023-08-24
 tags: linux study
 categories: Linux
 pin: false
-redirect_from:
-  - /posts/linux-메모리의-통계-정보/
 ---
 ## 메모리 조회
 
