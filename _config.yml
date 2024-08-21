@@ -165,8 +165,6 @@ kramdown:
       start_line: 1
 
 collections:
-  redirects:
-    output: true
   tabs:
     output: true
     sort_by: order
@@ -196,11 +194,6 @@ defaults:
       path: assets/js/dist
     values:
       swcache: true
-  - scope:
-      type: redirects
-    values:
-      layout: redirect
-      permalink: /posts/:title/
 
 sass:
   style: compressed
