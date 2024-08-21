@@ -200,6 +200,7 @@ defaults:
       type: redirects
     values:
       layout: redirect
+      permalink: /posts/:title/
 
 sass:
   style: compressed
