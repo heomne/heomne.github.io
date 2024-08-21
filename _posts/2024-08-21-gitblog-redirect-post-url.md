@@ -9,11 +9,11 @@ pin: false
 
 최근에 [indexing API를 사용하여 자동 색인 요청](https://heomne.github.io/posts/automate-google-search-indexing) 스크립트를 만든 이후로 구글 서치 콘솔에 색인된 페이지가 늘어나게 되었습니다. 그러다가 한 가지 문제를 찾게 됐는데..
 
-![not found link image - google search console](/assets/post_img/gitblog-redirect-post-url/image.png)
+![not found link image - google search console](/assets/post_img/gitblog-redirect-post-url/image.webp)
 
 크롤링 할 때 페이지 하나가 찾을 수 없음으로 나오는 것 같습니다. 자세히 들어가서 어떤 URL을 찾을 수 없다고 나오는지 찾아봅니다.
 
-![not found link URL - google search console](/assets/post_img/gitblog-redirect-post-url/image-1.png)
+![not found link URL - google search console](/assets/post_img/gitblog-redirect-post-url/image-1.webp)
 
 [https://heomne.github.io/posts/linux-메모리의-통계-정보/]() 링크를 찾을 수 없다고 나오고 있습니다.
 
@@ -59,6 +59,6 @@ redirect_to:
 
 리다이렉트가 정상적으로 되는 걸 확인했으니 구글 서치 콘솔에서 수정 결과 확인을 누르고 결과가 나오길 기다립니다.
 
-![Confirm modification results - google search console](/assets/post_img/gitblog-redirect-post-url/image-2.png)
+![Confirm modification results - google search console](/assets/post_img/gitblog-redirect-post-url/image-2.webp)
 
 워드프레스나 티스토리에서 블로그를 이전할 경우 위와 같은 방법을 사용하면 정상적으로 리다이렉트가 될 것 같긴합니다. 외부 링크를 입력했을 때도 정상적으로 작동이 되는지는 테스트가 필요할 것 같긴하네요.
