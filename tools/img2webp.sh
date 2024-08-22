@@ -8,7 +8,7 @@ FILE_NAME=$(ls -1t ${WORKING_DIR}/_posts/ | head -n 1)
 
 printf "# Checking last posted file name: ${DIR_NAME}\n"
 
-if [[ -z "${DIR_NAME}" || ! -d "${DIR_PATH}${DIR_NAME}" ]]; then
+if [ -z "${DIR_NAME}" ] || [ ! -d "${DIR_PATH}${DIR_NAME}" ]; then
     echo "[INFO] no valid path provided"
     exit 0
 fi
