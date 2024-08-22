@@ -2,8 +2,8 @@
 set -e
 
 WORKING_DIR="/home/runner/work/heomne.github.io/heomne.github.io"
-DIR_NAME=$(ls -1tr ${WORKING_DIR}/_posts/ | head -n 1 | awk -F "-" '{print substr($0, index($0, $4))}' | sed 's/-$//')
-DIR_PATH="${WORKING_DIR}/assets/post_img/"
+DIR_NAME=$(ls -1tr ../_posts/ | head -n 1 | awk -F "-" '{print substr($0, index($0, $4))}' | awk -F ".md" '{print $1}')
+DIR_PATH="${WORKING_DIR}/assets/post_img/
 FILE_NAME=$(ls -1t ${WORKING_DIR}/_posts/ | head -n 1)
 
 printf "# Checking last posted file name: ${DIR_NAME}\n"
