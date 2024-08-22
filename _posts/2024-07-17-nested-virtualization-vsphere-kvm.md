@@ -3,7 +3,7 @@ title: "ESXi에 RHEL VM 생성 후 KVM 기동하기 (Nested Virtualization)"
 author: heomne
 date: 2024-07-14 +/-TTTT
 tags: linux pacemaker
-categories: Linux
+categories: Pacemaker
 pin: false
 ---
 ESXi에 생성한 RHEL VM에서 Pacemaker의 ipmilan STONITH를 테스트할 환경을 만드는 방법을 찾다가 KVM설치 후 VirtualBMC를 통해 ipmilan을 테스트할 수 있는 환경을 구축할 수 있어 내용을 정리했습니다.

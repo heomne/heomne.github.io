@@ -2,8 +2,8 @@
 title: "(RHEL) Pacemaker 무중단 상태로 HA-LVM 신규생성 테스트"
 author: heomne
 date: 2024-07-04
-tags: linux troubleshooting
-categories: Linux
+tags: linux pacemaker
+categories: Pacemaker
 pin: false
 ---
 

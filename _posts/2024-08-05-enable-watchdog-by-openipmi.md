@@ -3,7 +3,7 @@ title: "[Linux] Watchdog 활성화 방법 (feat.OpenIpmI)"
 author: heomne
 date: 2024-08-05 +/-TTTT
 tags: linux pacemaker
-categories: Linux
+categories: Pacemaker
 pin: false
 ---
 
