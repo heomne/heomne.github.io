@@ -29,7 +29,7 @@ else
     done
 fi
 
-printf "# Changing markdown keyword(.png to .webp):"
+printf "# Changing markdown keyword - .png to .webp\n"
 
 if [ -f "${WORKING_DIR}/_posts/${FILE_NAME}" ]; then
     sed -i 's/.png/.webp/g' ${WORKING_DIR}/_posts/${FILE_NAME}
