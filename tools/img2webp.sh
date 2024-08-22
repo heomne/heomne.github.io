@@ -1,53 +1,39 @@
 #!/bin/bash
+set -e
+
 WORKING_DIR="/home/runner/work/heomne.github.io/heomne.github.io"
-DIR_NAME=$(ls -l ${WORKING_DIR}/_posts/ | tail -n 1 | awk -F " " '{print $9}' | awk -F "-" '{for(i=4; i<=NF; i++) printf $i"-"}')
-DIR_NAME=$(echo "${DIR_NAME::-4}")
+DIR_NAME=$(ls -1t ${WORKING_DIR}/_posts/ | head -n 1 | awk -F "-" '{print substr($0, index($0, $4))}' | sed 's/-$//')
 DIR_PATH="${WORKING_DIR}/assets/post_img/"
-FILE_NAME=$(ls -l ${WORKING_DIR}/_posts/ | awk -F " " '{print $9}' | tail -n 1)
+FILE_NAME=$(ls -1t ${WORKING_DIR}/_posts/ | head -n 1)
 
 printf "# Checking last posted file name: ${DIR_NAME}\n"
 
-if [ -d "${DIR_PATH}${DIR_NAME}" ]; then 
-
-	echo "DIR_PATH: "${DIR_PATH}${DIR_NAME}
-	
-else
-
-	echo "[INFO] no path provided"
-	exit 0
-
+if [[ -z "${DIR_NAME}" || ! -d "${DIR_PATH}${DIR_NAME}" ]]; then
+    echo "[INFO] no valid path provided"
+    exit 0
 fi
 
-printf "# Convert PNG to WEB: \n"
+echo "DIR_PATH: ${DIR_PATH}${DIR_NAME}"
 
-PNGS_CNT=$(ls -rtl ${DIR_PATH}${DIR_NAME} | grep .png | wc -l)
+printf "# Convert PNG to WEBP: \n"
 
-if [ "$PNGS_CNT" -eq 0 ]; then
+PNGS=$(find ${DIR_PATH}${DIR_NAME} -type f -name "*.png" -exec basename {} .png \;)
 
-	printf "[INFO] No PNG files found. Exiting.\n"
-	exit 0
-
-else 
-
-	PNGS=$(ls -rtl ${DIR_PATH}${DIR_NAME} | grep .png | awk -F " " '{print $9}' | awk -F "." '{print $1}')
-
-	for PNG in $PNGS
-	do
-		cwebp -q 80 "${DIR_PATH}${DIR_NAME}/${PNG}.png" -o "${DIR_PATH}${DIR_NAME}/${PNG}.webp"
-		printf "Converted ${DIR_PATH}${DIR_NAME}/${PNG}.png to ${DIR_PATH}${DIR_NAME}/${PNG}.web\n"
-	done
-
+if [ -z "${PNGS}" ]; then
+    printf "[INFO] No PNG files found. Exiting.\n"
+    exit 0
+else
+    for PNG in $PNGS; do
+        cwebp -q 80 "${DIR_PATH}${DIR_NAME}/${PNG}.png" -o "${DIR_PATH}${DIR_NAME}/${PNG}.webp"
+        printf "Converted ${DIR_PATH}${DIR_NAME}/${PNG}.png to ${DIR_PATH}${DIR_NAME}/${PNG}.webp\n"
+    done
 fi
 
 printf "# Changing markdown keyword(.png to .webp):"
 
 if [ -f "${WORKING_DIR}/_posts/${FILE_NAME}" ]; then
-
-	sed -i 's/.png/.webp/g' ${WORKING_DIR}/_posts/${FILE_NAME}
-
+    sed -i 's/.png/.webp/g' ${WORKING_DIR}/_posts/${FILE_NAME}
 else
-
-	printf "[INFO] Can't found markdown file. exiting...."
-	exit 0
-
+    printf "[INFO] Can't find markdown file. exiting...."
+    exit 0
 fi
