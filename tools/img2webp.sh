@@ -1,9 +1,9 @@
 #!/bin/bash
-
-DIR_NAME=$(ls -l ../_posts/ | tail -n 1 | awk -F " " '{print $9}' | awk -F "-" '{for(i=4; i<=NF; i++) printf $i"-"}')
+WORKING_DIR="/home/runner/work/heomne.github.io/heomne.github.io"
+DIR_NAME=$(ls -l ${WORKING_DIR}/_posts/ | tail -n 1 | awk -F " " '{print $9}' | awk -F "-" '{for(i=4; i<=NF; i++) printf $i"-"}')
 DIR_NAME=$(echo "${DIR_NAME::-4}")
-DIR_PATH="../assets/post_img/"
-FILE_NAME=$(ls -l ../_posts/ | awk -F " " '{print $9}' | tail -n 1)
+DIR_PATH="${WORKING_DIR}/assets/post_img/"
+FILE_NAME=$(ls -l ${WORKING_DIR}/_posts/ | awk -F " " '{print $9}' | tail -n 1)
 
 printf "# Checking last posted file name: ${DIR_NAME}\n"
 
@@ -41,9 +41,9 @@ fi
 
 printf "# Changing markdown keyword(.png to .webp):"
 
-if [ -f "../_posts/${FILE_NAME}" ]; then
+if [ -f "${WORKING_DIR}/_posts/${FILE_NAME}" ]; then
 
-	sed -i 's/.png/.webp/g' ../_posts/${FILE_NAME}
+	sed -i 's/.png/.webp/g' ${WORKING_DIR}/_posts/${FILE_NAME}
 
 else
 
