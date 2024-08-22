@@ -314,3 +314,6 @@ image-registry   4.14.15   True        False         False      46h
 ## References
 - [Persistent storage using local volumes](https://docs.openshift.com/container-platform/4.14/storage/persistent_storage/persistent_storage_local/persistent-storage-local.html)
 - [Configuring the registry for bare metal](https://docs.openshift.com/container-platform/4.14/registry/configuring_registry_storage/configuring-registry-storage-baremetal.html#configuring-registry-storage-baremetal)
+
+
+![alt text](/assets/post_img/openshift-image-registry-configure/image.png)

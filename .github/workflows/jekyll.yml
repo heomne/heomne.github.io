@@ -40,7 +40,9 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Convert PNG to WEBP
-        run: sh tools/img2webp.sh
+        run: sh img2webp.sh
+        env:
+          working-directory: ./tools
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
