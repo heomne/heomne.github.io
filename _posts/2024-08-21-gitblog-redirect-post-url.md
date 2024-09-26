@@ -15,7 +15,7 @@ pin: false
 
 ![not found link URL - google search console](/assets/post_img/gitblog-redirect-post-url/image-1.webp)
 
-[https://heomne.github.io/posts/linux-메모리의-통계-정보/]() 링크를 찾을 수 없다고 나오고 있습니다.
+[https://heomne.github.io/posts/linux-메모리의-통계-정보/](#) 링크를 찾을 수 없다고 나오고 있습니다.
 
 색인이 잘 되지 않는 것 같아 최근에 포스팅하는 글 링크를 전부 영어로 바꿨는데 이게 문제가 되는 것 같습니다. 해당 게시글은 현재 [https://heomne.github.io/posts/linux-memory-management/](https://heomne.github.io/posts/linux-memory-management/)로 링크가 변경된 상태입니다.
 
