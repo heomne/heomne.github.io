@@ -9,7 +9,7 @@ on:
       - README.md
       - LICENSE
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tabm um
   workflow_dispatch:
 
 permissions:
