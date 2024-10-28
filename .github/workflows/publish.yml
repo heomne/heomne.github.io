@@ -15,8 +15,6 @@ jobs:
   launch:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Builder: ${{ secrets.BUILDER }}"
-      - run: echo "Branch: ${{ github.ref_name }}"
       - run: |
           curl -X POST -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
