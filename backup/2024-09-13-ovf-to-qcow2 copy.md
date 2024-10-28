@@ -1,0 +1,117 @@
+---
+title: "OVF(OVA)에서 qcow2 파일로 변환 테스트"
+author: heomne
+date: 2024-09-13 +/-TTTT
+tags: linux
+categories: Linux
+pin: false
+---
+
+vCenter에 생성된 VM을 OVF 파일로 추출 후 qcow2 파일로 변환하는 테스트 과정을 작성한 글입니다.
+
+## 1. vCenter에 생성된 VM을 OVF 파일로 추출
+
+먼저 qcow2 파일로 변환하기위한 OVF 파일을 추출합니다. vCenter에 설치된 RHEL 8.8 VM을 추출했습니다.
+
+- 추출하려는 VM의 전원을 끄고 우클릭 [템플릿] 항목을 클릭하면 OVF 파일로 추출이 가능합니다.
+![vCenter OVF 추출 이미지](/assets/post_img/ovf-to-qcow2/image.webp)
+
+- OVF 파일을 추출하면 3~5개의 파일을 다운받게됩니다.
+```terminal
+RHEL8_OVF-1.vmdk       # vmware에서 사용되는 가상디스크 파일
+RHEL8_OVF-2.iso        # 부팅에 필요한 iso 파일
+RHEL8_OVF-3.nvram      # 가상머신의 UEFI, BIOS 설정을 저장
+RHEL8_OVF.mf           # 메타데이터 파일 (Manifest File)
+RHEL8_OVF.ovf          # VM의 구성정보 파일
+```
+
+> 위의 5개 파일을 하나의 파일로 합친게 OVA 파일입니다. OVF 파일을 OVA로 변환하기 위해서는 VMWare에서 제공하는 ovftool 프로그램을 사용해야합니다. (이 글에서는 사용하지 않습니다.)
+
+## 2. OVF 파일을 qcow2 파일로 변환
+
+다운받은 OVF 파일을 리눅스 서버로 옮겨준 후 `virt-v2v` 패키지를 사용하여 qcow2 파일로 변환해줍니다.
+
+`virt-v2v` 패키지는 외부 하이퍼바이저에서 기동되는 게스트OS를 KVM에서 기동될 수 있도록 변환해주는 툴로 VMware, Hyper-V, VirtualBox 등 다양한 하이퍼바이저에서 KVM으로 마이그레이션을 지원합니다. 아래 명령어를 사용하여 OVF 파일을 qcow2 파일로 마이그레이션합니다.
+
+`virt-v2v -i ova '/path/to/ovafolder' -of qcow2 -o local -os '/path/to/qcow2file'`
+
+- `-i ova '/path/to/ovafolder'` - OVA 파일을 변환하겠다는 옵션이며, OVF 파일의 경우 다운받은 파일을 한 디렉토리에 넣고 디렉토리를 지정해주면 문제없이 사용가능합니다.
+- `-of qcow2` - qcow2 파일 형식으로 변환하는 옵션입니다. `virt-v2v` 패키지는 다양한 변환방법을 지원하며, `raw`, `libvirt` 등이 있습니다.
+- `-o local` - `virt-v2v`는 기본적으로 변환한 OVF 파일을 KVM의 VM에 등록하도록 설정되어있습니다. 파일로 추출하려는 경우 `-o local` 옵션을 사용해야합니다.
+- `-os '/path/to/qcow2file` - `-o local` 옵션과 같이 사용해야하며, 추출된 qcow2 파일을 어디에 놓을지 결정하는 옵션입니다.
+
+정상적으로 변환되는 경우 아래와 같은 텍스트가 출력됩니다.
+
+```terminal
+[root@heomne ~]# virt-v2v -i ova /virtual/ovfs -of qcow2 -o local -os ~
+[   0.0] Opening the source -i ova /virtual/ovfs
+virt-v2v: warning: making OVA directory public readable to work around
+libvirt bug https://bugzilla.redhat.com/1045069
+[  61.1] Creating an overlay to protect the source from being modified
+[  61.1] Opening the overlay
+[  66.9] Inspecting the overlay
+[ 113.0] Checking for sufficient free disk space in the guest
+[ 113.0] Estimating space required on target for each disk
+[ 113.0] Converting Red Hat Enterprise Linux 8.8 (Ootpa) to run on KVM
+virt-v2v: This guest has virtio drivers installed.
+[ 209.0] Mapping filesystem data to avoid copying unused and blank areas
+virt-v2v: warning: fstrim on guest filesystem /dev/sda1 failed.  Usually
+you can ignore this message.  To find out more read "Trimming" in
+virt-v2v(1).
+
+Original message: fstrim: fstrim: /sysroot/: the discard operation is not
+supported
+[ 210.0] Closing the overlay
+[ 210.5] Assigning disks to buses
+[ 210.5] Checking if the guest needs BIOS or UEFI to boot
+virt-v2v: This guest requires UEFI on the target to boot.
+[ 210.5] Initializing the target -o local -os /root
+[ 210.5] Copying disk 1/1 to /root/RHEL8_OVF-sda (qcow2)
+    (100.00/100%)
+[ 243.2] Creating output metadata
+[ 243.2] Finishing off
+```
+
+홈 디렉토리로 이동하면 qcow2 파일과 xml 파일이 추가되어 있습니다.
+
+```terminal
+-rw-r--r--. 1 root root  5434834944 Sep 13 10:28 RHEL8_OVF-sda
+-rw-r--r--. 1 root root        1810 Sep 13 10:28 RHEL8_OVF.xml
+```
+
+`RHEL8_OVF-sda`가 qcow2 파일로, 구분을 위해 확장자 명을 붙여주는게 좋을 것 같습니다.
+
+`mv RHEL8_OVF-sda RHEL8_OVF-sda.qcow2`
+
+## 3. KVM에서 기동테스트
+
+이제 변환된 qcow2 파일을 KVM에서 기동해봅니다. KVM에서 새로운 VM 생성 후 실행하면 아래와 같은 메시지가 등장합니다.
+
+![KVM VM 생성 시 발생 에러 이미지](/assets/post_img/ovf-to-qcow2/image-1.webp)
+
+VM Network를 찾을 수 없다고 나오는데, vCenter에서 사용한 NIC 이름이 그대로 옮겨져서 찾을 수 없는 문제입니다.
+
+VM 설정에서 VM Network를 없애고 KVM NAT로 NIC를 변경합니다. 부팅 옵션도 BIOS에서 UEFI로 변경 후 실행해봅니다.
+
+![KVM VM 정상작동 이미지](/assets/post_img/ovf-to-qcow2/image-2.webp)
+
+VM이 정상적으로 실행되는지 확인합니다.
+
+## virt-v2v 버그 문제
+
+테스트한 리눅스 환경은 RHEL 8.6 버전이었는데, `virt-v2v` 명령어를 입력했을 때 아래와 같이 에러가 발생하는 문제가 있었습니다.
+
+```terminal
+virt-v2v: error: no installed kernel packages were found.
+
+This probably indicates that virt-v2v was unable to inspect this guest properly.
+
+If reporting bugs, run virt-v2v with debugging enabled and include the complete output:
+
+  virt-v2v -v -x [...]
+```
+
+[Bugzilla](https://bugzilla.redhat.com/show_bug.cgi?id=2093415)를 살펴보니 `virt-v2v-1:1.42.0-18.module+el8.6.0+14480+c0a3aa0f.x86_64`버전을 사용할 경우 나타나는 버그로 보입니다. 
+
+현재 최신버전에서는 해당 버그가 해결된 상태이기 때문에 패키지를 최신버전으로 업그레이드 후 사용해야합니다.
+
