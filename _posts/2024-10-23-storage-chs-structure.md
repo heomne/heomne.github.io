@@ -1,7 +1,7 @@
 ---
 title: "스토리지 용량이 동일한데 fdisk에서 End값이 다른 이유"
 author: heomne
-date: 2024-09-13 +/-TTTT
+date: 2024-10-23 +/-TTTT
 tags: linux storage
 categories: Linux
 pin: false
