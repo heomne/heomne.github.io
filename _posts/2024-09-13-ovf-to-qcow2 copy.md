@@ -1,9 +1,9 @@
 ---
-title: "OVF(OVA)에서 qcow2 파일로 변환 테스트"
+title: "[VM] OVF(OVA)에서 qcow2 파일로 변환 테스트"
 author: heomne
 date: 2024-09-13 +/-TTTT
-tags: linux
-categories: Linux
+tags: linux hypervisor
+categories: Linux Hypervisor
 pin: false
 ---
 
