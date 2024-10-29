@@ -4,12 +4,18 @@
 # documentation.
 
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll site to Pages
+name: Deploy Jekyll to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["master"]
+  # push:
+  #   branches: ["master"]
+
+  # Runs on after CI workflow completed
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
