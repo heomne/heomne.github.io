@@ -55,7 +55,7 @@ yum install crash
 - vmlinux를 설치하기 전 생성된 coredump의 `os-release` 버전을 확인합니다. 예시로 출력된 내용은 아래와 같습니다.  
   `# crash --osrelease <coredump>`
   ```terminal
-  [root@heomne ~]# crash --osrelease vmcore_241106
+  [root@heomne ~]# crash --osrelease vmcore
   3.10.0-1160.el7.x86_64
   ```
 
