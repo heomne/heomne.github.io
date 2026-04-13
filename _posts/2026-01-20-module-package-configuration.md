@@ -54,21 +54,29 @@ Summary  : Most recent (rolling) versions of podman, buildah, skopeo, runc, conm
 ## 개별 패키지 다운로드
 
 먼저 패키지를 다운받기 위해 폴더를 생성합니다.   
-`mkdir ~/container-tools; cd $_`
+```bash
+mkdir ~/container-tools; cd $_
+```
 
 업그레이드 하려는 `criu` 패키지가 `container-tools` 모듈에 포함되는 것을 확인했으니, 이제 모듈에 해당되는 개별 패키지들을 다운로드 받아줍니다.
-아래 명령어를 입력하면 특정 모듈에 해당되는 모든 패키지를 다운받습니다.
-
-`dnf module install --downloadonly --destdir=. container-tools:rhel8:8090020240201111839:d7b6f4b7:x86_64`
+아래 명령어를 입력하면 특정 모듈에 해당되는 모든 패키지를 다운받습니다.   
+```bash
+dnf module install --downloadonly --destdir=. \
+container-tools:rhel8:8090020240201111839:d7b6f4b7:x86_64
+```
 
 ## modules.yaml, repodata 생성
 이제 모듈 메타데이터를 생성할 `modules.yaml` 파일을 생성해야하는데, 해당 파일을 생성해주는 `modulemd-tools` 패키지를 설치해주어야합니다. 
-`createrepo_c` 패키지도 같이 설치해줍니다.
-
-`dnf install modulemd-tools createrepo_c`
+`createrepo_c` 패키지도 같이 설치해줍니다.   
+```bash
+dnf install modulemd-tools createrepo_c
+```
 
 패키지를 설치한 후 `modules.yaml` 파일을 생성하기위해 아래 명령어를 입력합니다.   
-`repo2module --module-name=container-tools-custom --module-stream=rhel8 --module-version=8090020240201111839 --module-context=d7b6f4b7 . modules.yaml`
+```bash
+repo2module --module-name=container-tools-custom --module-stream=rhel8 \
+--module-version=8090020240201111839 --module-context=d7b6f4b7 . modules.yaml
+```
 
 - `--module-name=container-tools-custom`: 모듈이름을 지정합니다. 기존 이름과 다르게 지정하여 conflict를 최대한 피하도록합니다.
 - `--module-stream=rhel8`: 모듈의 스트림을 지정합니다. 모듈 이름을 다르게 했기 때문에 기존 스트림과 같게 설정해도 상관없습니다.
