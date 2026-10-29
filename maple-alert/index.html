@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>메이플스토리 재획 알리미 · 새 주소로 이동</title>
+  <link rel="canonical" href="https://maple-alert.pages.dev/">
+  <!-- 스크립트가 꺼져 있을 때만 바로 이동한다(스크립트가 켜져 있으면 아래에서 설정을 담아 이동) -->
+  <noscript><meta http-equiv="refresh" content="0; url=https://maple-alert.pages.dev/"></noscript>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #eef2f9; color: #1b2a4e;
+      font: 15px/1.6 "Pretendard Variable", Pretendard, "Malgun Gothic", system-ui, sans-serif; }
+    main { max-width: 420px; padding: 24px; text-align: center; }
+    a { color: #2b7bff; font-weight: 700; }
+    @media (prefers-color-scheme: dark) { body { background: #090c14; color: #e6ecf7; } a { color: #5b97ff; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>재획 알리미가 새 주소로 옮겼습니다.<br>잠시 후 자동으로 이동합니다.</p>
+    <p><a id="go" href="https://maple-alert.pages.dev/">maple-alert.pages.dev로 이동</a></p>
+    <p>즐겨찾기는 새 주소로 바꿔 주세요.</p>
+  </main>
+  <script>
+    // 예전 앱(이 주소)은 설정을 이 사이트(heomne.github.io)의 localStorage에 저장했다. 새 주소에서는 보이지 않으므로,
+    // 앱의 '설정 코드'와 같은 형식(MAPLE1: + gzip JSON을 base64url로)으로 만들어 #import= 뒤에 붙여 보낸다.
+    // 주소의 # 뒤는 서버로 전송되지 않는다. 새 주소의 앱이 확인 창을 띄운 뒤 적용하고 주소에서 지운다.
+    const TARGET = 'https://maple-alert.pages.dev/';
+    const read = key => {
+      try { return localStorage.getItem(key); } catch { return null; }
+    };
+    const json = key => {
+      try { return JSON.parse(read(key)); } catch { return null; }
+    };
+    const lightDark = v => (v === 'light' || v === 'dark' ? v : null);
+
+    async function settingsCode() {
+      const skills = json('mcd.v2.skills'), features = json('mcd.v2.features'), opts = json('mcd.v2.opts');
+      if (!skills && !features && !opts) return null;   // 이 브라우저에서 앱을 쓴 적이 없음
+      const settings = {
+        schema: 'maple-alarm.settings',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        data: {
+          skills: Array.isArray(skills) ? skills : [],
+          features: features && typeof features === 'object' ? features : {},
+          opts: opts && typeof opts === 'object' ? opts : {},
+          theme: null,
+          skin: read('mcd.skin'),
+          themes: { default: lightDark(read('mcd.theme')), maple: lightDark(read('mcd.theme.maple')) },
+        },
+      };
+      const gz = new Blob([JSON.stringify(settings)]).stream().pipeThrough(new CompressionStream('gzip'));
+      const bytes = new Uint8Array(await new Response(gz).arrayBuffer());
+      let s = '';
+      for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+      return 'MAPLE1:' + btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    (async () => {
+      let url = TARGET;
+      try {
+        const code = await settingsCode();
+        if (code) url += '#import=' + code;
+      } catch { /* 설정을 못 읽으면 설정 없이 이동한다 */ }
+      document.getElementById('go').href = url;
+      location.replace(url);
+    })();
+  </script>
+</body>
+</html>
